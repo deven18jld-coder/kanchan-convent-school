@@ -1,0 +1,56 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/sections/Hero.astro';
+import StatsBar from '../components/sections/StatsBar.astro';
+import AboutPreview from '../components/sections/AboutPreview.astro';
+import WhyChooseUs from '../components/sections/WhyChooseUs.astro';
+import PrincipalMessagePreview from '../components/sections/PrincipalMessagePreview.astro';
+import AcademicsOverview from '../components/sections/AcademicsOverview.astro';
+import AdmissionsBanner from '../components/sections/AdmissionsBanner.astro';
+import FacilitiesOverview from '../components/sections/FacilitiesOverview.astro';
+import GalleryPreview from '../components/sections/GalleryPreview.astro';
+import SchoolTourVideo from '../components/sections/SchoolTourVideo.astro';
+import EventsPreview from '../components/sections/EventsPreview.astro';
+import NoticeBoardPreview from '../components/sections/NoticeBoardPreview.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
+import GoogleReviews from '../components/sections/GoogleReviews.astro';
+import FAQAccordion from '../components/sections/FAQAccordion.astro';
+import LocationMap from '../components/sections/LocationMap.astro';
+
+import seoData from '../data/seo.json';
+import siteData from '../data/site.json';
+
+const seo = seoData.index;
+
+const componentMap: Record<string, any> = {
+  hero: Hero,
+  stats: StatsBar,
+  aboutPreview: AboutPreview,
+  whyChooseUs: WhyChooseUs,
+  principalPreview: PrincipalMessagePreview,
+  academicsOverview: AcademicsOverview,
+  admissionsBanner: AdmissionsBanner,
+  facilitiesOverview: FacilitiesOverview,
+  galleryPreview: GalleryPreview,
+  tourVideo: SchoolTourVideo,
+  eventsPreview: EventsPreview,
+  noticeBoardPreview: NoticeBoardPreview,
+  testimonials: Testimonials,
+  googleReviews: GoogleReviews,
+  faqs: FAQAccordion,
+  locationMap: LocationMap
+};
+
+// Sort sections based on 'order' field, only including enabled sections
+const sections = Object.entries(siteData.home)
+  .filter(([_, section]) => section.enabled === true)
+  .sort(([, a], [, b]) => (a.order || 99) - (b.order || 99));
+---
+
+<Layout title={seo.title} description={seo.description}>
+  {sections.map(([key]) => {
+    const Component = componentMap[key];
+    if (Component) return <Component />;
+    return null;
+  })}
+</Layout>

@@ -1,0 +1,84 @@
+---
+import Layout from '../layouts/Layout.astro';
+import siteData from '../data/site.json';
+import seoData from '../data/seo.json';
+import noticesData from '../data/notices.json';
+
+const seo = seoData['notice-board'];
+const content = siteData.pages.noticeBoard;
+
+// Sort notices by date (latest first)
+const sortedNotices = [...noticesData].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+// Helper function to format date
+const formatDate = (dateStr: string) => {
+  const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+  return new Date(dateStr).toLocaleDateString('en-US', options);
+};
+
+// Check if a notice is new (less than 30 days old)
+const isNewNotice = (dateStr: string) => {
+  const noticeDate = new Date(dateStr);
+  const today = new Date();
+  const diffTime = Math.abs(today.getTime() - noticeDate.getTime());
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  return diffDays <= 30;
+};
+---
+
+<Layout title={seo.title} description={seo.description}>
+  {content.enabled && (
+    <>
+      {/* Page Header */}
+      <section class="page-header">
+        <div class="container">
+          <h1>{content.title}</h1>
+          <p>{content.content}</p>
+        </div>
+      </section>
+
+      {/* Notices List Section */}
+      <section class="section bg-bg">
+        <div class="container">
+          <div class="d-flex flex-column gap-md" style="max-width: 800px; margin: 0 auto;">
+            {sortedNotices.map((notice) => {
+              const important = notice.isImportant;
+              const isNew = isNewNotice(notice.date);
+              
+              return (
+                <div 
+                  class="card bg-surface shadow-sm p-xl d-flex flex-column gap-sm" 
+                  style={`border-left: 5px solid ${important ? '#DC2626' : 'var(--color-primary)'}; border-top: none;`}
+                >
+                  <div class="d-flex justify-content-between align-items-start gap-md flex-wrap">
+                    <div class="d-flex align-items-center gap-sm flex-wrap">
+                      <span class="text-secondary fs-sm fw-semibold">📅 {formatDate(notice.date)}</span>
+                      {important && <span class="badge bg-danger text-white px-2 py-1">Important</span>}
+                      {isNew && <span class="badge bg-success text-white px-2 py-1">New</span>}
+                    </div>
+                  </div>
+
+                  <h3 class="mb-xs text-primary" style="font-family: var(--font-body); font-weight: 700; font-size: 1.35rem; line-height: 1.3;">
+                    {notice.title}
+                  </h3>
+
+                  <p class="text-secondary mb-sm" style="line-height: 1.6; font-size: 1.05rem;">
+                    {notice.content}
+                  </p>
+
+                  {notice.fileUrl && (
+                    <div class="mt-sm">
+                      <a href={notice.fileUrl} class="btn btn-secondary py-xs px-md d-inline-flex align-items-center gap-xs" style="font-size: 0.9rem;" download>
+                        <span>📥</span> Download Attachment (PDF)
+                      </a>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    </>
+  )}
+</Layout>

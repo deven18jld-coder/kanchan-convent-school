@@ -1,0 +1,111 @@
+---
+import Layout from '../layouts/Layout.astro';
+import siteData from '../data/site.json';
+import seoData from '../data/seo.json';
+import eventsData from '../data/events.json';
+import { getMatchedImage } from '../utils/imageLoader';
+
+const seo = seoData.events;
+const content = siteData.pages.events;
+
+// Sort events chronologically (soonest first)
+const sortedEvents = [...eventsData]
+  .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+  .map(event => ({
+    ...event,
+    image: getMatchedImage('events', event.id, event.image)
+  }));
+
+// Helper function to format date
+const formatDate = (dateStr: string) => {
+  const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+  return new Date(dateStr).toLocaleDateString('en-US', options);
+};
+---
+
+<Layout title={seo.title} description={seo.description}>
+  {content.enabled && (
+    <>
+      {/* Page Header */}
+      <section class="page-header">
+        <div class="container">
+          <h1>{content.title}</h1>
+          <p>{content.content}</p>
+        </div>
+      </section>
+
+      {/* Events Feed Section */}
+      <section class="section bg-bg">
+        <div class="container">
+          <div class="d-flex flex-column gap-xl" style="max-width: 900px; margin: 0 auto;">
+            {sortedEvents.map((event) => (
+              <article class="card bg-surface shadow-md overflow-hidden p-0" style="border: none; border-radius: var(--radius-lg); transition: all 0.3s ease;">
+                <div class="d-flex flex-column flex-md-row" style="min-height: 250px;">
+                  {/* Event Image */}
+                  <div style="flex: 1 1 300px; position: relative; overflow: hidden; min-height: 200px;">
+                    <img 
+                      src={event.image} 
+                      alt={event.title} 
+                      class="w-100 h-100" 
+                      style="object-fit: cover; transition: transform 0.4s ease;" 
+                      loading="lazy" 
+                    />
+                    <span 
+                      class="badge bg-primary text-white" 
+                      style="position: absolute; top: 16px; left: 16px; font-size: 0.8rem; font-weight: 600; padding: 0.3rem 0.75rem; border-radius: 4px; box-shadow: var(--shadow-sm);"
+                    >
+                      {event.category}
+                    </span>
+                  </div>
+
+                  {/* Event Details */}
+                  <div class="p-xl d-flex flex-column justify-content-between" style="flex: 2 1 350px;">
+                    <div>
+                      <h2 class="h3 mb-sm text-primary" style="font-family: var(--font-body); font-weight: 700;">
+                        {event.title}
+                      </h2>
+                      
+                      {/* Meta Info */}
+                      <div class="d-flex flex-wrap gap-md text-secondary fs-sm mb-md" style="font-weight: 500;">
+                        <span class="d-flex align-items-center gap-xs">
+                          📅 {formatDate(event.date)}
+                        </span>
+                        <span class="d-flex align-items-center gap-xs">
+                          ⏰ {event.time}
+                        </span>
+                        <span class="d-flex align-items-center gap-xs">
+                          📍 {event.location}
+                        </span>
+                      </div>
+
+                      <p class="text-secondary mb-0" style="line-height: 1.6;">
+                        {event.description}
+                      </p>
+                    </div>
+
+                    <div class="mt-lg pt-md" style="border-top: 1px solid var(--color-border);">
+                      <a href="/contact" class="btn btn-secondary py-xs px-md" style="font-size: 0.9rem;">
+                        Inquire about Event
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  )}
+</Layout>
+
+<style>
+  /* Hover effects */
+  article.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
+  }
+  article.card:hover img {
+    transform: scale(1.03);
+  }
+</style>

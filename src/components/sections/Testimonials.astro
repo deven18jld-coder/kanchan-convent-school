@@ -1,0 +1,61 @@
+---
+import siteData from '../../data/site.json';
+import testimonialsData from '../../data/testimonials.json';
+import { getMatchedImage } from '../../utils/imageLoader';
+
+const data = siteData.home.testimonials;
+const mappedTestimonials = testimonialsData.map(testimonial => ({
+  ...testimonial,
+  avatar: getMatchedImage('testimonials', testimonial.id, testimonial.avatar)
+}));
+---
+
+<section class="testimonials py-section bg-light">
+  <div class="container">
+    <h2 class="text-center mb-lg">{data.title}</h2>
+    
+    <!-- CSS-only Snap Scroll Carousel -->
+    <div class="testimonials-slider gap-md pb-md">
+      {mappedTestimonials.map(testimonial => (
+        <article class="testimonial-card p-md bg-white rounded shadow-sm d-flex flex-column">
+          <div class="d-flex align-items-center mb-sm">
+            <img src={testimonial.avatar} alt={testimonial.name} class="rounded-circle mr-sm" style="width: 50px; height: 50px; object-fit: cover;" loading="lazy" />
+            <div>
+              <h3 class="h6 mb-0">{testimonial.name}</h3>
+              <span class="text-muted text-xs">{testimonial.role}</span>
+            </div>
+          </div>
+          <div class="rating mb-sm text-warning" style="font-size: 1.25rem;">
+            {"★".repeat(testimonial.rating)}{"☆".repeat(5 - testimonial.rating)}
+          </div>
+          <blockquote class="blockquote flex-grow-1 m-0">
+            <p class="text-sm font-italic text-muted">"{testimonial.text}"</p>
+          </blockquote>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials-slider {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: var(--spacing-md);
+  }
+  
+  .testimonial-card {
+    scroll-snap-align: center;
+    flex: 0 0 100%;
+    min-width: 280px;
+  }
+  
+  @media (min-width: 768px) {
+    .testimonial-card {
+      flex: 0 0 calc(33.333% - 14px); /* Account for gap */
+    }
+  }
+</style>

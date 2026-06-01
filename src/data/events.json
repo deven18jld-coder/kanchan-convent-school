@@ -1,0 +1,32 @@
+[
+  {
+    "id": "evt-001",
+    "title": "Annual Sports Day 2026",
+    "date": "2026-11-15",
+    "time": "08:00 AM - 04:00 PM",
+    "location": "Main School Ground",
+    "description": "Join us for a day of athletic excellence and team spirit as our students compete in track and field events.",
+    "image": "/images/events/sports-day.webp",
+    "category": "Sports"
+  },
+  {
+    "id": "evt-002",
+    "title": "Science Exhibition & Science Fair",
+    "date": "2026-08-20",
+    "time": "10:00 AM - 02:00 PM",
+    "location": "School Auditorium",
+    "description": "Discover innovative projects and experiments created by our brilliant young scientists.",
+    "image": "/images/events/science-fair.webp",
+    "category": "Academics"
+  },
+  {
+    "id": "evt-003",
+    "title": "Annual Cultural Fest",
+    "date": "2026-12-22",
+    "time": "05:00 PM - 09:00 PM",
+    "location": "School Open-Air Theatre",
+    "description": "A celebration of music, dance, and drama showcasing the diverse talents of our students.",
+    "image": "/images/events/cultural-fest.webp",
+    "category": "Cultural"
+  }
+]

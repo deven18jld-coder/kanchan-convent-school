@@ -1,0 +1,26 @@
+[
+  {
+    "id": "test-001",
+    "name": "Priya Sharma",
+    "role": "Parent of Class VI Student",
+    "text": "The teachers at SchoolName are incredibly supportive. My child has not only excelled academically but has also grown into a confident individual thanks to the focus on co-curricular activities.",
+    "rating": 5,
+    "avatar": "/images/testimonials/parent1.webp"
+  },
+  {
+    "id": "test-002",
+    "name": "Rahul Verma",
+    "role": "Alumnus (Batch of 2018)",
+    "text": "The foundation I received here prepared me perfectly for higher education. The science labs and practical learning approach gave me a significant edge in my engineering career.",
+    "rating": 5,
+    "avatar": "/images/testimonials/alumni1.webp"
+  },
+  {
+    "id": "test-003",
+    "name": "Sunita Patel",
+    "role": "Parent of Class X Student",
+    "text": "Safety, discipline, and excellent academics—this school offers it all. The regular communication with parents keeps us well-informed about our child's progress.",
+    "rating": 4,
+    "avatar": "/images/testimonials/parent2.webp"
+  }
+]

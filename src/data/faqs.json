@@ -1,0 +1,32 @@
+[
+  {
+    "id": "faq-001",
+    "question": "What is the admission procedure for Nursery?",
+    "answer": "Admissions to Nursery are granted based on age criteria and a brief interactive session with the parents and the child. Forms are usually available online starting November.",
+    "category": "Admissions"
+  },
+  {
+    "id": "faq-002",
+    "question": "Does the school provide transportation?",
+    "answer": "Yes, we offer safe and GPS-enabled bus services covering all major routes in the city. Detailed route maps and fee structures are available at the transport desk.",
+    "category": "Facilities"
+  },
+  {
+    "id": "faq-003",
+    "question": "What is the student-to-teacher ratio?",
+    "answer": "To ensure personalized attention, we maintain a strict student-to-teacher ratio of 25:1 in pre-primary and 30:1 in higher classes.",
+    "category": "Academics"
+  },
+  {
+    "id": "faq-004",
+    "question": "Are co-curricular activities mandatory?",
+    "answer": "Yes, we believe in holistic development. Every student is encouraged to participate in at least one sport and one cultural activity of their choice.",
+    "category": "Academics"
+  },
+  {
+    "id": "faq-005",
+    "question": "How is the safety of students ensured on campus?",
+    "answer": "The campus is under 24/7 CCTV surveillance with trained security personnel at all gates. We also have a strict visitor management system in place.",
+    "category": "General"
+  }
+]

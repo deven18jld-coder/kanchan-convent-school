@@ -1,0 +1,92 @@
+---
+import Layout from '../layouts/Layout.astro';
+import siteData from '../data/site.json';
+import seoData from '../data/seo.json';
+
+const seo = seoData.academics;
+const pageContent = siteData.pages.academics;
+const overview = siteData.home.academicsOverview;
+---
+
+<Layout title={seo.title} description={seo.description}>
+  {pageContent.enabled && (
+    <>
+      {/* Page Header */}
+      <section class="page-header">
+        <div class="container">
+          <h1>{pageContent.title}</h1>
+          <p>{pageContent.subtitle}</p>
+        </div>
+      </section>
+
+      {/* Intro Section */}
+      <section class="section bg-surface">
+        <div class="container" style="max-width: 800px; text-align: center;">
+          <h2 class="mb-md">Academic Excellence</h2>
+          <p class="lead mb-lg" style="font-size: 1.2rem; line-height: 1.8;">
+            {pageContent.content}
+          </p>
+          <div class="d-flex justify-content-center gap-md flex-wrap mt-lg">
+            <a href="/downloads/academic-calendar.pdf" class="btn btn-secondary">📅 Academic Calendar</a>
+            <a href="/downloads/syllabus.pdf" class="btn btn-secondary">📖 Syllabus Breakdown</a>
+          </div>
+        </div>
+      </section>
+
+      {/* Curriculum Stages */}
+      {overview.enabled && (
+        <section class="section bg-bg" style="border-top: 1px solid var(--color-border);">
+          <div class="container">
+            <div class="text-center mb-xl">
+              <h2 class="mb-xs">Stages of Learning</h2>
+              <p class="max-width-700 mx-auto text-secondary">A structured path from foundational years to secondary school certification.</p>
+            </div>
+
+            <div class="grid grid-3 gap-lg">
+              {overview.items.map((item) => (
+                <div class="card bg-surface shadow-md d-flex flex-column" style="height: 100%; border-top: 4px solid var(--color-primary); padding: var(--spacing-xl);">
+                  <div class="d-flex align-items-center gap-md mb-md">
+                    <span style="font-size: 2.5rem; line-height: 1;">{item.icon}</span>
+                    <h3 class="mb-0" style="font-size: 1.35rem; color: var(--color-primary); font-family: var(--font-body); font-weight: 700;">{item.stage}</h3>
+                  </div>
+                  
+                  <p class="flex-1 text-secondary" style="font-size: 1rem; line-height: 1.6; margin-bottom: var(--spacing-lg);">
+                    {item.highlights}
+                  </p>
+
+                  <div style="background-color: var(--color-bg); padding: var(--spacing-sm) var(--spacing-md); border-radius: var(--radius-sm); border: 1px solid var(--color-border);">
+                    <span class="fs-sm fw-semibold text-primary">CBSE Aligned Program</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Methodology Section */}
+      <section class="section bg-surface text-center">
+        <div class="container">
+          <h2 class="mb-lg">Our Teaching Methodology</h2>
+          <div class="grid grid-3 gap-lg">
+            <div class="card bg-bg shadow-sm" style="border: none;">
+              <span style="font-size: 2.5rem; display: block; margin-bottom: var(--spacing-sm);">🧠</span>
+              <h3 class="mb-sm">Interactive & Smart</h3>
+              <p class="mb-0">Utilizing smart boards and multimedia content to make abstract concepts simple and relatable.</p>
+            </div>
+            <div class="card bg-bg shadow-sm" style="border: none;">
+              <span style="font-size: 2.5rem; display: block; margin-bottom: var(--spacing-sm);">🧬</span>
+              <h3 class="mb-sm">Practical Learning</h3>
+              <p class="mb-0">Regular lab experiments and field visits to emphasize real-world scientific applications.</p>
+            </div>
+            <div class="card bg-bg shadow-sm" style="border: none;">
+              <span style="font-size: 2.5rem; display: block; margin-bottom: var(--spacing-sm);">🌟</span>
+              <h3 class="mb-sm">Continuous Evaluation</h3>
+              <p class="mb-0">Comprehensive and continuous assessments to track and nurture student potential without stress.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  )}
+</Layout>

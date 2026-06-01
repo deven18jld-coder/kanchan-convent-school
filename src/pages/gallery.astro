@@ -1,0 +1,152 @@
+---
+import Layout from '../layouts/Layout.astro';
+import siteData from '../data/site.json';
+import seoData from '../data/seo.json';
+import galleryJsonData from '../data/gallery.json';
+import { getHybridGalleryImages } from '../utils/imageLoader';
+
+const seo = seoData.gallery;
+const content = siteData.pages.gallery;
+
+// Generate hybrid gallery
+const galleryData = getHybridGalleryImages(galleryJsonData);
+
+// Extract unique categories for filter
+const categories = ["All", ...new Set(galleryData.map(item => item.category))];
+---
+
+<Layout title={seo.title} description={seo.description}>
+  {content.enabled && (
+    <>
+      {/* Page Header */}
+      <section class="page-header">
+        <div class="container">
+          <h1>{content.title}</h1>
+          <p>{content.content}</p>
+        </div>
+      </section>
+
+      {/* Gallery & Interactive Filtering */}
+      <section class="section bg-bg">
+        <div class="container">
+          {/* Category Filter Bar */}
+          <div class="d-flex justify-content-center flex-wrap gap-sm mb-xl" id="gallery-filters" style="border-bottom: 1px solid var(--color-border); padding-bottom: var(--spacing-lg);">
+            {categories.map((category) => (
+              <button 
+                class={`btn ${category === 'All' ? 'btn-primary' : 'btn-secondary'} filter-btn`} 
+                data-category={category}
+                style="padding: 0.5rem 1.25rem; font-size: 0.95rem; border-radius: 30px;"
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+
+          {/* Gallery Grid */}
+          <div class="grid grid-3" id="gallery-grid">
+            {galleryData.map((item) => (
+              <article 
+                class="card bg-surface shadow-md p-0 overflow-hidden gallery-item-card" 
+                data-category={item.category}
+                style="border: none; border-radius: var(--radius-lg); transition: all 0.3s ease; position: relative;"
+              >
+                <div style="position: relative; overflow: hidden; aspect-ratio: 4/3;">
+                  <a href={item.url} class="glightbox" data-gallery="school-gallery" data-title={item.title}>
+                    <img 
+                      src={item.url} 
+                      alt={item.alt} 
+                      class="w-100 h-100" 
+                      style="object-fit: cover; transition: transform 0.4s ease;" 
+                      loading="lazy" 
+                    />
+                  </a>
+                  {/* Category overlay */}
+                  <span 
+                    class="badge bg-secondary text-white" 
+                    style="position: absolute; top: 12px; left: 12px; font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.6rem; border-radius: 20px; box-shadow: var(--shadow-sm); z-index: 2;"
+                  >
+                    {item.category}
+                  </span>
+                </div>
+                <div class="p-lg">
+                  <h3 class="mb-xs h5 text-primary" style="font-family: var(--font-body); font-weight: 600; margin-bottom: 0;">{item.title}</h3>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  )}
+</Layout>
+
+<style>
+  /* Hover effects */
+  .gallery-item-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12) !important;
+  }
+  
+  .gallery-item-card:hover img {
+    transform: scale(1.05);
+  }
+
+  .filter-btn {
+    transition: all 0.25s ease;
+  }
+
+  .filter-btn:hover {
+    transform: translateY(-2px);
+  }
+</style>
+
+<script>
+  // Initialize GLightbox
+  if (typeof GLightbox !== 'undefined') {
+    const lightbox = GLightbox({
+      selector: '.glightbox',
+      touchNavigation: true,
+      loop: true,
+    });
+  }
+
+  // Simple interactive filtering using pure Vanilla JS
+  const filterButtons = document.querySelectorAll('#gallery-filters .filter-btn');
+  const galleryItems = document.querySelectorAll('#gallery-grid .gallery-item-card');
+
+  if (filterButtons.length > 0 && galleryItems.length > 0) {
+    filterButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        // Toggle button states
+        filterButtons.forEach((b) => {
+          b.classList.remove('btn-primary');
+          b.classList.add('btn-secondary');
+        });
+        btn.classList.remove('btn-secondary');
+        btn.classList.add('btn-primary');
+
+        const selectedCategory = btn.getAttribute('data-category');
+
+        // Toggle gallery item visibility with simple fade-in
+        galleryItems.forEach((item) => {
+          const itemCategory = item.getAttribute('data-category');
+          const element = item as HTMLElement;
+
+          if (selectedCategory === 'All' || itemCategory === selectedCategory) {
+            element.style.display = 'block';
+            setTimeout(() => {
+              element.style.opacity = '1';
+              element.style.transform = 'scale(1)';
+            }, 50);
+          } else {
+            element.style.opacity = '0';
+            element.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+              element.style.display = 'none';
+            }, 200);
+          }
+        });
+      });
+    });
+  }
+</script>

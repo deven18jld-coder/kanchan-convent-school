@@ -1,0 +1,26 @@
+---
+import siteData from '../../data/site.json';
+import Button from '../ui/Button.astro';
+
+const data = siteData.home.aboutPreview;
+---
+
+<section class="about-preview py-section bg-light">
+  <div class="container">
+    <div class="grid grid-2 align-items-center gap-lg">
+      <div class="mb-lg-0 mb-md">
+        <img src={data.image} alt={data.title} class="img-fluid rounded shadow-sm" loading="lazy" style="width: 100%; object-fit: cover;" />
+      </div>
+      <div>
+        <h2 class="mb-sm">{data.title}</h2>
+        <p class="mb-md">{data.content}</p>
+        <ul class="feature-list mb-md">
+          {data.bullets.map(bullet => (
+            <li>✅ {bullet}</li>
+          ))}
+        </ul>
+        <Button href={data.cta.href} variant="primary">{data.cta.label}</Button>
+      </div>
+    </div>
+  </div>
+</section>

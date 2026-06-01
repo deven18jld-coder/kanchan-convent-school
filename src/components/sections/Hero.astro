@@ -1,0 +1,84 @@
+---
+import Button from '../ui/Button.astro';
+import siteData from '../../data/site.json';
+import { getHeroImage } from '../../utils/imageLoader';
+
+const { hero } = siteData.home;
+const heroBgImage = getHeroImage(hero.bgImage);
+---
+
+<section class="hero" style={`background-image: linear-gradient(rgba(26, 58, 107, 0.7), rgba(26, 58, 107, 0.8)), url('${heroBgImage}')`}>
+  <div class="container hero-content text-center">
+    <h1 class="hero-title">{hero.headline}</h1>
+    <p class="hero-subtitle">{hero.subheadline}</p>
+    <div class="hero-ctas d-flex justify-content-center gap-md">
+      <Button href={hero.ctaPrimary.href} variant="primary">{hero.ctaPrimary.label}</Button>
+      <Button href={hero.ctaSecondary.href} variant="secondary" className="btn-outline-white">{hero.ctaSecondary.label}</Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    color: var(--color-surface);
+  }
+  
+  .hero-title {
+    color: var(--color-surface);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: var(--spacing-md);
+    animation: fadeInUp 0.8s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  .hero-subtitle {
+    color: #e2e8f0;
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-xl);
+    animation: fadeInUp 0.8s ease 0.2s forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .hero-ctas {
+    animation: fadeInUp 0.8s ease 0.4s forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  /* Custom override for secondary button on dark background */
+  :global(.btn-outline-white) {
+    border-color: var(--color-surface) !important;
+    color: var(--color-surface) !important;
+  }
+  
+  :global(.btn-outline-white:hover) {
+    background-color: var(--color-surface) !important;
+    color: var(--color-primary) !important;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      min-height: 70vh;
+    }
+    .hero-ctas {
+      flex-direction: column;
+    }
+    :global(.hero-ctas .btn) {
+      width: 100%;
+    }
+  }
+</style>

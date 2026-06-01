@@ -1,0 +1,100 @@
+---
+import Layout from '../layouts/Layout.astro';
+import siteData from '../data/site.json';
+import seoData from '../data/seo.json';
+import { getPrincipalImage } from '../utils/imageLoader';
+
+const seo = seoData.about;
+const content = siteData.pages.about;
+const principalImageUrl = getPrincipalImage(content.principalMessage.image);
+---
+
+<Layout title={seo.title} description={seo.description}>
+  {content.enabled && (
+    <>
+      {/* Page Header */}
+      <section class="page-header">
+        <div class="container">
+          <h1>{content.title}</h1>
+          <p>Nurturing Curious Minds Since {siteData.school.establishedYear}</p>
+        </div>
+      </section>
+
+      {/* History, Vision, Mission */}
+      <section class="section bg-bg">
+        <div class="container">
+          <div class="grid grid-2 gap-lg align-items-center">
+            {/* History Column */}
+            <div class="card p-xl bg-surface shadow-md">
+              <h2 class="mb-md position-relative" style="display: inline-block;">
+                Our History
+                <span style="position: absolute; bottom: -8px; left: 0; width: 50px; height: 3px; background-color: var(--color-secondary);"></span>
+              </h2>
+              <p style="font-size: 1.1rem; line-height: 1.7; color: var(--color-text-secondary); margin-top: var(--spacing-md);">
+                {content.history}
+              </p>
+            </div>
+
+            {/* Vision & Mission Column */}
+            <div class="d-flex flex-column gap-lg">
+              <div class="card bg-surface shadow-sm border-left-gold" style="border-left: 4px solid var(--color-secondary);">
+                <h3 class="mb-sm d-flex align-items-center gap-sm">
+                  <span style="font-size: 1.5rem;">🌟</span> Our Vision
+                </h3>
+                <p class="mb-0" style="line-height: 1.6;">{content.vision}</p>
+              </div>
+
+              <div class="card bg-surface shadow-sm border-left-navy" style="border-left: 4px solid var(--color-primary);">
+                <h3 class="mb-sm d-flex align-items-center gap-sm">
+                  <span style="font-size: 1.5rem;">🎯</span> Our Mission
+                </h3>
+                <p class="mb-0" style="line-height: 1.6;">{content.mission}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Principal Message Section */}
+      <section class="section bg-surface" id="principal-message" style="border-top: 1px solid var(--color-border);">
+        <div class="container">
+          <div class="text-center mb-xl">
+            <h2 class="mb-xs">{content.principalMessage.title}</h2>
+            <p class="max-width-700 mx-auto text-secondary">A message of inspiration and leadership from our guide.</p>
+          </div>
+
+          <div class="grid grid-2 gap-xl align-items-center">
+            {/* Image & Title Column */}
+            <div class="text-center">
+              <div style="position: relative; display: inline-block;">
+                <img 
+                  src={principalImageUrl} 
+                  alt={content.principalMessage.name} 
+                  class="rounded-lg shadow-lg" 
+                  style="width: 320px; height: 380px; object-fit: cover; border: 6px solid var(--color-surface); outline: 1px solid var(--color-border); max-width: 100%;" 
+                  loading="lazy" 
+                />
+                <div style="position: absolute; bottom: -20px; right: -20px; width: 80px; height: 80px; background-color: var(--color-secondary); opacity: 0.15; z-index: -1; border-radius: var(--radius-md);"></div>
+              </div>
+              <h3 class="mt-lg mb-xs">{content.principalMessage.name}</h3>
+              <p class="text-secondary fw-semibold mb-0">{siteData.home.principalPreview.title}</p>
+              <p class="text-muted fs-sm">{siteData.school.name}</p>
+            </div>
+
+            {/* Content Column */}
+            <div class="p-md">
+              <span style="font-size: 3rem; color: var(--color-secondary); font-family: Georgia, serif; line-height: 1; display: block; margin-bottom: -15px;">“</span>
+              <p class="lead" style="font-size: 1.15rem; line-height: 1.8; color: var(--color-text-primary); font-family: var(--font-body);">
+                {content.principalMessage.content}
+              </p>
+              <div class="mt-xl d-flex align-items-center gap-md">
+                <div style="width: 40px; height: 2px; background-color: var(--color-secondary);"></div>
+                <span style="font-family: var(--font-display); font-style: italic; font-weight: 600; color: var(--color-primary);">Warm Regards, Principal's Desk</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  )}
+</Layout>

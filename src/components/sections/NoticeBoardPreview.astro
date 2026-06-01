@@ -1,0 +1,54 @@
+---
+import siteData from '../../data/site.json';
+import noticesData from '../../data/notices.json';
+import Button from '../ui/Button.astro';
+
+const data = siteData.home.noticeBoardPreview;
+const previewNotices = noticesData.slice(0, 5);
+
+// Helper to determine if a notice is new (within last 7 days)
+const isNew = (dateStr: string) => {
+  const noticeDate = new Date(dateStr);
+  const now = new Date();
+  const diffTime = Math.abs(now.getTime() - noticeDate.getTime());
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+  return diffDays <= 7;
+};
+---
+
+<section class="notice-board-preview py-section">
+  <div class="container" style="max-width: 800px;">
+    <div class="d-flex justify-content-between align-items-center mb-md flex-wrap gap-sm border-bottom pb-sm">
+      <h2 class="mb-0">{data.title}</h2>
+      <Button href={data.cta.href} variant="outline-primary">{data.cta.label}</Button>
+    </div>
+    
+    <div class="notices-list">
+      {previewNotices.map(notice => (
+        <article class="notice-item py-md border-bottom d-flex align-items-start gap-md">
+          <div class="notice-date bg-light rounded text-center p-sm border" style="min-width: 80px;">
+            <div class="text-primary fw-bold fs-lg" style="line-height: 1;">
+              {new Date(notice.date).getDate()}
+            </div>
+            <div class="text-muted text-sm text-uppercase">
+              {new Date(notice.date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+            </div>
+          </div>
+          <div class="notice-content flex-grow-1">
+            <h3 class="h5 mb-xs d-flex align-items-center flex-wrap gap-sm">
+              {notice.title}
+              {notice.isImportant && <span class="badge bg-danger text-white text-xs px-2 py-1 rounded">Important</span>}
+              {isNew(notice.date) && <span class="badge bg-success text-white text-xs px-2 py-1 rounded">New</span>}
+            </h3>
+            <p class="text-muted text-sm mb-xs">{notice.content}</p>
+            {notice.fileUrl && (
+              <a href={notice.fileUrl} target="_blank" class="text-primary text-sm text-decoration-none d-inline-flex align-items-center gap-xs">
+                📎 Download PDF
+              </a>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

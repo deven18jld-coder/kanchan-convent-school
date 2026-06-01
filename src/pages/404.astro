@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import siteData from '../data/site.json';
+
+const content = siteData.pages.notFound;
+---
+
+<Layout title={content.title} description={content.content}>
+  <section class="section bg-bg text-center py-section" style="min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <div class="container">
+      <div class="mb-lg" style="font-size: 5rem; line-height: 1;">😕</div>
+      <h1 class="mb-sm" style="font-size: 3rem;">{content.title}</h1>
+      <p class="text-secondary mb-xl mx-auto" style="max-width: 600px; font-size: 1.1rem;">
+        {content.content}
+      </p>
+      <a href="/" class="btn btn-primary px-lg py-md" style="font-size: 1.1rem; border-radius: 30px;">
+        Return to Homepage
+      </a>
+    </div>
+  </section>
+</Layout>

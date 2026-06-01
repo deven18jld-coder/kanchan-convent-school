@@ -1,0 +1,220 @@
+---
+import Layout from '../layouts/Layout.astro';
+import siteData from '../data/site.json';
+import seoData from '../data/seo.json';
+
+const seo = seoData.contact;
+const content = siteData.pages.contact;
+const contact = siteData.contact;
+const locationMap = siteData.home.locationMap;
+---
+
+<Layout title={seo.title} description={seo.description}>
+  {content.enabled && (
+    <>
+      {/* Page Header */}
+      <section class="page-header">
+        <div class="container">
+          <h1>{content.title}</h1>
+          <p>{content.subtitle}</p>
+        </div>
+      </section>
+
+      {/* Main Form & Info Grid */}
+      <section class="section bg-bg">
+        <div class="container">
+          <div class="grid grid-2 gap-xl">
+            
+            {/* Left Column: Contact Information Cards */}
+            <div class="d-flex flex-column gap-lg">
+              
+              {/* Phone, Email, Hours Card */}
+              <div class="card bg-surface shadow-md p-xl" style="border-top: 4px solid var(--color-primary);">
+                <h2 class="mb-lg" style="font-size: 1.5rem;">Get in Touch</h2>
+                
+                <div class="d-flex flex-column gap-md">
+                  {/* Address */}
+                  <div class="d-flex align-items-start gap-md">
+                    <span style="font-size: 1.5rem; line-height: 1;">📍</span>
+                    <div>
+                      <span class="fw-semibold text-primary d-block mb-xs">Our Address</span>
+                      <p class="mb-0 text-secondary" style="font-size: 0.95rem; line-height: 1.5;">{contact.address}</p>
+                    </div>
+                  </div>
+
+                  {/* Phone */}
+                  <div class="d-flex align-items-start gap-md" style="border-top: 1px solid var(--color-border); padding-top: var(--spacing-md);">
+                    <span style="font-size: 1.5rem; line-height: 1;">📞</span>
+                    <div>
+                      <span class="fw-semibold text-primary d-block mb-xs">Phone Numbers</span>
+                      <p class="mb-xs text-secondary" style="font-size: 0.95rem;">
+                        <strong>General:</strong> <a href={`tel:${contact.phoneMain}`} class="text-secondary hover-gold">{contact.phoneMainDisplay}</a>
+                      </p>
+                      <p class="mb-0 text-secondary" style="font-size: 0.95rem;">
+                        <strong>Admissions:</strong> <a href={`tel:${contact.phoneAdmissions}`} class="text-secondary hover-gold">{contact.phoneAdmissions}</a>
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Email */}
+                  <div class="d-flex align-items-start gap-md" style="border-top: 1px solid var(--color-border); padding-top: var(--spacing-md);">
+                    <span style="font-size: 1.5rem; line-height: 1;">✉️</span>
+                    <div>
+                      <span class="fw-semibold text-primary d-block mb-xs">Email Address</span>
+                      <p class="mb-0 text-secondary" style="font-size: 0.95rem;">
+                        <a href={`mailto:${contact.email}`} class="text-secondary hover-gold">{contact.email}</a>
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Office Hours */}
+                  <div class="d-flex align-items-start gap-md" style="border-top: 1px solid var(--color-border); padding-top: var(--spacing-md);">
+                    <span style="font-size: 1.5rem; line-height: 1;">🕒</span>
+                    <div>
+                      <span class="fw-semibold text-primary d-block mb-xs">Office Hours</span>
+                      <p class="mb-0 text-secondary" style="font-size: 0.95rem;">{contact.officeHours}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* WhatsApp Help Card */}
+              <div class="card bg-secondary text-white p-lg shadow-md d-flex align-items-center justify-content-between" style="border: none;">
+                <div>
+                  <h3 class="mb-xs text-white" style="font-size: 1.2rem;">Quick Chat</h3>
+                  <p class="mb-0 text-white-50 fs-sm">Have a quick question? Message us on WhatsApp!</p>
+                </div>
+                <a href={`https://wa.me/${contact.whatsappNumber}`} class="btn btn-primary bg-primary text-white" style="border-radius: 30px; font-size: 0.9rem;" target="_blank" rel="noopener noreferrer">
+                  💬 Chat
+                </a>
+              </div>
+            </div>
+
+            {/* Right Column: Contact Inquiry Form */}
+            <div>
+              <div class="card bg-surface shadow-xl p-xl" style="border-top: 4px solid var(--color-primary);">
+                <h2 class="mb-xs">Send a Message</h2>
+                <p class="text-secondary fs-sm mb-lg">Have a general question or feedback? Drop us a line below.</p>
+                
+                <form action={content.formAction} method="POST" class="d-flex flex-column gap-md" id="contactForm">
+                  {/* Full Name */}
+                  <div class="form-group mb-0">
+                    <label for="fullName" class="form-label">Full Name *</label>
+                    <input type="text" id="fullName" name="fullName" class="form-input" placeholder="Enter your full name" required />
+                  </div>
+
+                  {/* Email */}
+                  <div class="form-group mb-0">
+                    <label for="email" class="form-label">Email Address *</label>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="name@example.com" required />
+                  </div>
+
+                  {/* Phone */}
+                  <div class="form-group mb-0">
+                    <label for="phone" class="form-label">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" class="form-input" placeholder="10-digit mobile number" pattern="[0-9]{10}" required />
+                  </div>
+
+                  {/* Subject */}
+                  <div class="form-group mb-0">
+                    <label for="subject" class="form-label">Subject *</label>
+                    <input type="text" id="subject" name="subject" class="form-input" placeholder="What is this regarding?" required />
+                  </div>
+
+                  {/* Message */}
+                  <div class="form-group mb-0">
+                    <label for="message" class="form-label">Your Message *</label>
+                    <textarea id="message" name="message" class="form-textarea" rows="4" placeholder="Type your message here..." required></textarea>
+                  </div>
+
+                  {/* Submit Button */}
+                  <button type="submit" class="btn btn-primary w-100 mt-sm py-md fw-bold" id="contactSubmitBtn">
+                    Send Inquiry
+                  </button>
+                </form>
+
+                {/* Success Message (Hidden by default) */}
+                <div id="contactSuccessMsg" class="hidden text-center py-lg">
+                  <div class="mb-md" style="font-size: 3rem;">✅</div>
+                  <h3 class="mb-sm text-success">Message Sent Successfully!</h3>
+                  <p class="text-secondary">Thank you for reaching out. Our team will get back to you shortly.</p>
+                  <button class="btn btn-secondary mt-md" onclick="document.getElementById('contactSuccessMsg').classList.add('hidden'); document.getElementById('contactForm').classList.remove('hidden'); document.getElementById('contactForm').reset();">Send Another Message</button>
+                </div>
+                
+                {/* Error Message (Hidden by default) */}
+                <div id="contactErrorMsg" class="hidden mt-md p-md bg-danger text-white rounded">
+                  Oops! There was a problem submitting your form. Please try again.
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </section>
+
+      {/* Google Maps Location Section */}
+      {locationMap.enabled && (
+        <section class="section p-0 bg-bg" style="border-top: 1px solid var(--color-border); line-height: 0;">
+          <div class="w-100" style="height: 450px; position: relative;">
+            <iframe 
+              src={locationMap.mapEmbed} 
+              width="100%" 
+              height="100%" 
+              style="border:0; position: absolute; top: 0; left: 0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"
+              title="School Location Map">
+            </iframe>
+          </div>
+        </section>
+      )}
+    </>
+  )}
+</Layout>
+
+<style>
+  .hover-gold:hover {
+    color: var(--color-secondary) !important;
+  }
+</style>
+
+<script>
+  const contactForm = document.getElementById('contactForm') as HTMLFormElement;
+  const successMsg = document.getElementById('contactSuccessMsg');
+  const errorMsg = document.getElementById('contactErrorMsg');
+  const submitBtn = document.getElementById('contactSubmitBtn') as HTMLButtonElement;
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      if (errorMsg) errorMsg.classList.add('hidden');
+      
+      const originalBtnText = submitBtn.innerText;
+      submitBtn.innerText = 'Sending...';
+      submitBtn.disabled = true;
+
+      try {
+        const formData = new FormData(contactForm);
+        const response = await fetch(contactForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          contactForm.classList.add('hidden');
+          if (successMsg) successMsg.classList.remove('hidden');
+        } else {
+          if (errorMsg) errorMsg.classList.remove('hidden');
+        }
+      } catch (error) {
+        if (errorMsg) errorMsg.classList.remove('hidden');
+      } finally {
+        submitBtn.innerText = originalBtnText;
+        submitBtn.disabled = false;
+      }
+    });
+  }
+</script>

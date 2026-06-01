@@ -1,0 +1,20 @@
+---
+import siteData from '../../data/site.json';
+import Button from '../ui/Button.astro';
+
+const data = siteData.home.admissionsBanner;
+---
+
+<section class="admissions-banner py-section bg-primary text-white text-center">
+  <div class="container">
+    <h2 class="mb-sm text-white">{data.title}</h2>
+    <p class="mb-md fs-lg text-white-50">{data.subtitle}</p>
+    <div class="d-flex justify-content-center gap-md">
+      <!-- Triggers the popup we built in Phase 1 -->
+      <button class="btn btn-secondary" onclick="document.getElementById('admission-popup').classList.remove('hidden')">
+        Enquire Now
+      </button>
+      <Button href="/downloads/prospectus.pdf" variant="outline-white">Download Prospectus</Button>
+    </div>
+  </div>
+</section>

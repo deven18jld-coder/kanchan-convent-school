@@ -1,0 +1,28 @@
+---
+import siteData from '../../data/site.json';
+import Button from '../ui/Button.astro';
+
+const data = siteData.home.academicsOverview;
+---
+
+<section class="academics-overview py-section">
+  <div class="container">
+    <div class="text-center mb-lg">
+      <h2>{data.title}</h2>
+    </div>
+    <div class="grid grid-3 gap-md mb-lg">
+      {data.items.map(item => (
+        <article class="academic-card p-md bg-white rounded shadow-sm hover-lift border-top border-primary border-3">
+          <div class="d-flex align-items-center mb-sm">
+            <span class="fs-xl mr-sm">{item.icon}</span>
+            <h3 class="h5 mb-0">{item.stage}</h3>
+          </div>
+          <p class="text-muted text-sm">{item.highlights}</p>
+        </article>
+      ))}
+    </div>
+    <div class="text-center">
+      <Button href={data.cta.href} variant="primary">{data.cta.label}</Button>
+    </div>
+  </div>
+</section>

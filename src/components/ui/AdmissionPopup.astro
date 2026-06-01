@@ -1,0 +1,160 @@
+---
+import siteData from '../../data/site.json';
+
+const { home } = siteData;
+const banner = home.admissionsBanner;
+---
+
+<div id="admission-popup" class="popup-overlay hidden">
+  <div class="popup-content">
+    <button id="close-popup" class="close-btn" aria-label="Close Popup">&times;</button>
+    <div class="popup-header">
+      <h3>{banner.title}</h3>
+      <p>{banner.subtitle}</p>
+    </div>
+    <form class="popup-form" action={banner.formAction} method="POST">
+      <div class="form-group">
+        <label for="popup-name" class="form-label">Parent's Name</label>
+        <input type="text" id="popup-name" name="name" class="form-input" required />
+      </div>
+      <div class="form-group">
+        <label for="popup-phone" class="form-label">Phone Number</label>
+        <input type="tel" id="popup-phone" name="phone" class="form-input" required />
+      </div>
+      <div class="form-group">
+        <label for="popup-class" class="form-label">Class Applying For</label>
+        <select id="popup-class" name="class" class="form-input" required>
+          <option value="">Select Class</option>
+          {banner.classes.map(cls => (
+            <option value={cls}>{cls}</option>
+          ))}
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Inquire Now</button>
+    </form>
+  </div>
+</div>
+
+<style>
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    padding: var(--spacing-md);
+  }
+
+  .popup-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .popup-content {
+    background-color: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    width: 100%;
+    max-width: 450px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+  }
+
+  .popup-overlay.hidden .popup-content {
+    transform: translateY(20px);
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--color-text-secondary);
+  }
+
+  .close-btn:hover {
+    color: var(--color-primary);
+  }
+
+  .popup-header {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .popup-header h3 {
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  .popup-header p {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+  }
+
+  .w-100 {
+    width: 100%;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const popup = document.getElementById('admission-popup');
+    const closeBtn = document.getElementById('close-popup');
+    let hasShown = false;
+
+    // Check if already shown in this session
+    if (sessionStorage.getItem('popupShown')) {
+      hasShown = true;
+    }
+
+    const showPopup = () => {
+      if (!hasShown && popup) {
+        popup.classList.remove('hidden');
+        hasShown = true;
+        sessionStorage.setItem('popupShown', 'true');
+      }
+    };
+
+    // Show on exit intent
+    document.addEventListener('mouseleave', (e) => {
+      if (e.clientY <= 0) {
+        showPopup();
+      }
+    });
+
+    // Show after 30 seconds as fallback
+    setTimeout(showPopup, 30000);
+
+    // Show on scroll past 50% as another fallback
+    window.addEventListener('scroll', () => {
+      if (!hasShown && window.scrollY > (document.body.scrollHeight / 2)) {
+        showPopup();
+      }
+    }, { passive: true });
+
+    // Close logic
+    if (closeBtn && popup) {
+      closeBtn.addEventListener('click', () => {
+        popup.classList.add('hidden');
+      });
+
+      // Close on clicking outside
+      popup.addEventListener('click', (e) => {
+        if (e.target === popup) {
+          popup.classList.add('hidden');
+        }
+      });
+    }
+  });
+</script>

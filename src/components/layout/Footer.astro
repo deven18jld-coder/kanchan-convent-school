@@ -1,0 +1,118 @@
+---
+import siteData from '../../data/site.json';
+
+const { school, contact, social, navigation, downloads } = siteData;
+---
+
+<footer class="footer">
+  <div class="container grid grid-4 footer-top py-section">
+    <!-- Column 1: School Info -->
+    <div class="footer-col">
+      <h3 class="footer-logo">{school.name}</h3>
+      <p class="mb-md text-light">{school.tagline}.</p>
+      <p class="text-light">CBSE Affiliation No: {school.affiliationNo}</p>
+    </div>
+
+    <!-- Column 2: Quick Links -->
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul class="footer-links">
+        {navigation.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Column 3: Useful Downloads -->
+    <div class="footer-col">
+      <h4>Useful Downloads</h4>
+      <ul class="footer-links">
+        {downloads.map((item) => (
+          <li><a href={item.href} target="_blank">{item.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Column 4: Contact & Social -->
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <ul class="footer-contact">
+        <li>📍 {contact.address}</li>
+        <li>📞 <a href={`tel:${contact.phoneMain}`}>{contact.phoneMainDisplay}</a></li>
+        <li>✉️ <a href={`mailto:${contact.email}`}>{contact.email}</a></li>
+        <li>📱 <a href={`https://wa.me/${contact.whatsappNumber}`}>{contact.whatsappDisplay}</a></li>
+      </ul>
+      <div class="social-links mt-md d-flex gap-sm">
+        {social.facebook && <a href={social.facebook} aria-label="Facebook" class="social-icon">FB</a>}
+        {social.youtube && <a href={social.youtube} aria-label="YouTube" class="social-icon">YT</a>}
+        {social.instagram && <a href={social.instagram} aria-label="Instagram" class="social-icon">IG</a>}
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom text-center">
+    <div class="container">
+      <p class="mb-0">© {new Date().getFullYear()} {school.name}. All Rights Reserved. | <a href="/privacy-policy">Privacy Policy</a></p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+  }
+
+  .footer h3, .footer h4 {
+    color: var(--color-surface);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .footer-col p, .footer-col li, .footer-col a {
+    color: #cbd5e1; /* Light gray text for contrast */
+    font-size: 0.95rem;
+  }
+
+  .footer-col a:hover {
+    color: var(--color-secondary);
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .footer-contact a {
+    display: inline;
+  }
+
+  .social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+  }
+
+  .social-icon:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+  }
+
+  .footer-bottom {
+    background-color: #132a4e; /* Darker navy */
+    padding: var(--spacing-md) 0;
+    font-size: 0.875rem;
+  }
+</style>

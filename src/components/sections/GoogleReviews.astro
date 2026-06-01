@@ -1,0 +1,45 @@
+---
+import siteData from '../../data/site.json';
+import Button from '../ui/Button.astro';
+
+const data = siteData.home.googleReviews;
+---
+
+<section class="google-reviews py-section">
+  <div class="container">
+    <div class="text-center mb-lg">
+      <h2>{data.title}</h2>
+      <div class="d-flex justify-content-center align-items-center gap-sm mt-sm">
+        <span class="fs-xl fw-bold">{data.rating}</span>
+        <div class="text-warning fs-lg">★★★★★</div>
+        <span class="text-muted">({data.totalReviews} reviews)</span>
+      </div>
+    </div>
+    
+    <div class="grid grid-3 gap-md mb-lg">
+      {data.reviews.map(review => (
+        <article class="review-card p-md bg-white border rounded shadow-sm d-flex flex-column">
+          <div class="d-flex align-items-center mb-sm">
+            <div class="avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mr-sm fw-bold" style="width: 40px; height: 40px;">
+              {review.name.charAt(0)}
+            </div>
+            <div>
+              <h3 class="h6 mb-0">{review.name}</h3>
+              <span class="text-muted text-xs">{review.date}</span>
+            </div>
+            <div class="ml-auto text-warning">
+              {"★".repeat(review.rating)}
+            </div>
+          </div>
+          <p class="text-sm m-0 flex-grow-1">{review.text}</p>
+        </article>
+      ))}
+    </div>
+    
+    <div class="text-center">
+      <Button href={data.cta.href} variant="outline-dark" target="_blank">
+        <span class="mr-xs">G</span> {data.cta.label}
+      </Button>
+    </div>
+  </div>
+</section>

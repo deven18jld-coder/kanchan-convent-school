@@ -1,0 +1,198 @@
+---
+import Layout from '../layouts/Layout.astro';
+import siteData from '../data/site.json';
+import seoData from '../data/seo.json';
+
+const seo = seoData.admissions;
+const content = siteData.pages.admissions;
+const school = siteData.school;
+---
+
+<Layout title={seo.title} description={seo.description}>
+  {content.enabled && (
+    <>
+      {/* Page Header */}
+      <section class="page-header">
+        <div class="container">
+          <h1>{content.title}</h1>
+          <p>Join the {school.name} Family — Secure Your Child's Future Today</p>
+        </div>
+      </section>
+
+      {/* Main Content & Form Grid */}
+      <section class="section bg-bg">
+        <div class="container">
+          <div class="grid grid-2 gap-xl">
+            {/* Left Column: Process & Eligibility */}
+            <div>
+              {/* Process Card */}
+              <div class="card bg-surface shadow-md mb-lg p-xl" style="border-top: 4px solid var(--color-secondary);">
+                <h2 class="mb-md">Admissions Process</h2>
+                <div class="d-flex flex-column gap-md mt-md">
+                  {content.process.map((step) => {
+                    // Extract number and text for better styling
+                    const firstDotIndex = step.indexOf('.');
+                    const stepNumber = step.substring(0, firstDotIndex).trim();
+                    const stepText = step.substring(firstDotIndex + 1).trim();
+                    return (
+                      <div class="d-flex align-items-start gap-md">
+                        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 32px; height: 32px; flex-shrink: 0; font-size: 0.9rem;">
+                          {stepNumber}
+                        </div>
+                        <p class="mb-0 text-secondary" style="font-size: 1.05rem; line-height: 1.5; padding-top: 2px;">
+                          {stepText}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Eligibility Card */}
+              <div class="card bg-surface shadow-md mb-lg p-xl" style="border-top: 4px solid var(--color-primary);">
+                <h3 class="mb-sm d-flex align-items-center gap-sm">
+                  <span style="font-size: 1.5rem;">📋</span> Eligibility & Age Criteria
+                </h3>
+                <p class="mb-md text-secondary" style="line-height: 1.6;">
+                  {content.eligibility}
+                </p>
+                <div style="background-color: var(--color-bg); padding: var(--spacing-md); border-radius: var(--radius-sm); border: 1px solid var(--color-border);">
+                  <span class="fw-semibold text-primary d-block mb-xs">Required Documents for Interaction:</span>
+                  <ul style="list-style-type: disc; padding-left: 20px; color: var(--color-text-secondary); font-size: 0.95rem;" class="d-flex flex-column gap-xs">
+                    <li>Birth Certificate of the child</li>
+                    <li>Transfer Certificate (TC) from the previous school (if applicable)</li>
+                    <li>Report card of the previous class</li>
+                    <li>Passport size photographs of the child and parents</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Download Prospectus Link */}
+              <div class="d-flex flex-wrap gap-md">
+                {siteData.downloads.slice(0, 2).map((item) => (
+                  <a href={item.href} class="btn btn-secondary flex-1 text-center" download>
+                    📥 {item.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Right Column: Inquiry Form */}
+            <div>
+              <div class="card bg-surface shadow-xl p-xl" style="border-top: 4px solid var(--color-primary);">
+                <h2 class="mb-xs">Admissions Inquiry</h2>
+                <p class="text-secondary fs-sm mb-lg">Please fill out this form and our admissions team will contact you shortly.</p>
+                
+                <form action={content.formAction} method="POST" class="d-flex flex-column gap-md" id="admissionsForm">
+                  {/* Student Name */}
+                  <div class="form-group mb-0">
+                    <label for="studentName" class="form-label">Student's Full Name *</label>
+                    <input type="text" id="studentName" name="studentName" class="form-input" placeholder="Enter student's name" required />
+                  </div>
+
+                  {/* Parent Name */}
+                  <div class="form-group mb-0">
+                    <label for="parentName" class="form-label">Parent / Guardian Name *</label>
+                    <input type="text" id="parentName" name="parentName" class="form-input" placeholder="Enter parent's name" required />
+                  </div>
+
+                  <div class="grid grid-2 gap-md" style="margin-bottom: 0;">
+                    {/* Contact Number */}
+                    <div class="form-group mb-0">
+                      <label for="phone" class="form-label">Mobile Number *</label>
+                      <input type="tel" id="phone" name="phone" class="form-input" placeholder="10-digit mobile number" pattern="[0-9]{10}" required />
+                    </div>
+
+                    {/* Email */}
+                    <div class="form-group mb-0">
+                      <label for="email" class="form-label">Email Address *</label>
+                      <input type="email" id="email" name="email" class="form-input" placeholder="name@example.com" required />
+                    </div>
+                  </div>
+
+                  {/* Class Seeking Admission */}
+                  <div class="form-group mb-0">
+                    <label for="seekingClass" class="form-label">Class Seeking Admission *</label>
+                    <select id="seekingClass" name="seekingClass" class="form-input" style="background-color: white;" required>
+                      <option value="" disabled selected>Select class</option>
+                      <option value="Nursery">Nursery / Playgroup</option>
+                      <option value="KG">KG / Prep</option>
+                      <option value="Primary-1-5">Primary (Classes I - V)</option>
+                      <option value="Middle-6-8">Middle (Classes VI - VIII)</option>
+                      <option value="Secondary-9-10">Secondary (Classes IX - X)</option>
+                      <option value="Senior-Sec-11-12">Senior Secondary (Classes XI - XII)</option>
+                    </select>
+                  </div>
+
+                  {/* Message */}
+                  <div class="form-group mb-0">
+                    <label for="message" class="form-label">Additional Comments / Questions</label>
+                    <textarea id="message" name="message" class="form-textarea" rows="4" placeholder="Any specific requirements or previous school details..."></textarea>
+                  </div>
+
+                  {/* Submit Button */}
+                  <button type="submit" class="btn btn-primary w-100 mt-sm py-md fw-bold" id="admissionsSubmitBtn">
+                    Submit Inquiry Form
+                  </button>
+                </form>
+
+                {/* Success Message (Hidden by default) */}
+                <div id="admissionsSuccessMsg" class="hidden text-center py-lg">
+                  <div class="mb-md" style="font-size: 3rem;">✅</div>
+                  <h3 class="mb-sm text-success">Inquiry Submitted!</h3>
+                  <p class="text-secondary">Thank you. Our admissions team will contact you shortly.</p>
+                  <button class="btn btn-secondary mt-md" onclick="document.getElementById('admissionsSuccessMsg').classList.add('hidden'); document.getElementById('admissionsForm').classList.remove('hidden'); document.getElementById('admissionsForm').reset();">Submit Another Inquiry</button>
+                </div>
+                
+                {/* Error Message (Hidden by default) */}
+                <div id="admissionsErrorMsg" class="hidden mt-md p-md bg-danger text-white rounded">
+                  Oops! There was a problem submitting your form. Please try again.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  )}
+</Layout>
+
+<script>
+  const admissionsForm = document.getElementById('admissionsForm') as HTMLFormElement;
+  const successMsg = document.getElementById('admissionsSuccessMsg');
+  const errorMsg = document.getElementById('admissionsErrorMsg');
+  const submitBtn = document.getElementById('admissionsSubmitBtn') as HTMLButtonElement;
+
+  if (admissionsForm) {
+    admissionsForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      if (errorMsg) errorMsg.classList.add('hidden');
+      
+      const originalBtnText = submitBtn.innerText;
+      submitBtn.innerText = 'Submitting...';
+      submitBtn.disabled = true;
+
+      try {
+        const formData = new FormData(admissionsForm);
+        const response = await fetch(admissionsForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          admissionsForm.classList.add('hidden');
+          if (successMsg) successMsg.classList.remove('hidden');
+        } else {
+          if (errorMsg) errorMsg.classList.remove('hidden');
+        }
+      } catch (error) {
+        if (errorMsg) errorMsg.classList.remove('hidden');
+      } finally {
+        submitBtn.innerText = originalBtnText;
+        submitBtn.disabled = false;
+      }
+    });
+  }
+</script>

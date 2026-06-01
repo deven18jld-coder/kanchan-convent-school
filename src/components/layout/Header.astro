@@ -1,0 +1,171 @@
+---
+import Button from '../ui/Button.astro';
+import MobileMenu from './MobileMenu.astro';
+import siteData from '../../data/site.json';
+
+const { school, contact, navigation, home } = siteData;
+const currentPath = Astro.url.pathname;
+---
+
+<header class="header-wrapper">
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="container d-flex justify-content-between align-items-center flex-wrap" style="gap: 10px;">
+      <div class="top-bar-links d-flex align-items-center gap-sm">
+        <a href={`tel:${contact.phoneMain}`} class="top-link">
+          <span class="icon">📞</span>
+          <span class="text hidden-mobile">{contact.phoneMainDisplay}</span>
+        </a>
+        <a href={`https://wa.me/${contact.whatsappNumber}`} class="top-link hidden-mobile">
+          <span class="icon">📱</span>
+          <span class="text">{contact.whatsappDisplay}</span>
+        </a>
+      </div>
+      <div class="top-bar-cta">
+        <a href={home.admissionsBanner.ctaLink || "/admissions"} class="top-link-btn">
+          <span class="icon">🎓</span> 
+          <span class="text hidden-mobile">{home.admissionsBanner.title}</span>
+          <span class="text hidden-desktop">Apply</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation -->
+  <nav class="main-nav">
+    <div class="container d-flex justify-content-between align-items-center nav-container">
+      <a href="/" class="logo">
+        <h2>{school.name}</h2>
+      </a>
+
+      <!-- Desktop Links -->
+      <ul class="nav-links hidden-mobile d-flex align-items-center gap-lg">
+        {navigation.map((item) => {
+          const isActive = currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
+          return (
+            <li><a href={item.href} class={isActive ? 'active' : ''}>{item.label}</a></li>
+          );
+        })}
+      </ul>
+
+      <!-- Mobile Hamburger -->
+      <button class="hamburger hidden-desktop" id="menu-btn" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+  
+  <MobileMenu />
+</header>
+
+<style>
+  .header-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Top Bar */
+  .top-bar {
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    padding: var(--spacing-xs) 0;
+    font-size: 0.875rem;
+  }
+
+  .top-link, .top-link-btn {
+    color: var(--color-surface);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+  
+  .top-link:hover, .top-link-btn:hover {
+    color: var(--color-secondary);
+  }
+
+  /* Main Nav */
+  .main-nav {
+    padding: var(--spacing-md) 0;
+  }
+
+  .nav-container {
+    height: 100%;
+  }
+
+  .logo h2 {
+    margin-bottom: 0;
+    font-size: 1.5rem;
+  }
+
+  .nav-links a {
+    color: var(--color-text-primary);
+    font-weight: 500;
+    position: relative;
+    text-decoration: none;
+    padding-bottom: 4px;
+    transition: color 0.3s ease;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-primary);
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--color-primary);
+  }
+
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+
+  .nav-links a.active {
+    color: var(--color-primary);
+  }
+
+  .nav-links a.active::after {
+    width: 100%;
+  }
+
+  /* Hamburger */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .hamburger span {
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-text-primary);
+    transition: all 0.3s linear;
+  }
+</style>
+
+<script>
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if(menuBtn && mobileMenu) {
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+    });
+  }
+</script>

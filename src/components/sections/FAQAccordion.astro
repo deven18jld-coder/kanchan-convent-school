@@ -1,0 +1,48 @@
+---
+import siteData from '../../data/site.json';
+import faqsData from '../../data/faqs.json';
+import Button from '../ui/Button.astro';
+
+const data = siteData.home.faqs;
+const previewFaqs = faqsData.slice(0, 5); // Show top 5
+---
+
+<section class="faqs-accordion py-section">
+  <div class="container" style="max-width: 800px;">
+    <h2 class="text-center mb-lg">{data.title}</h2>
+    
+    <div class="faq-list mb-lg">
+      {previewFaqs.map(faq => (
+        <details class="faq-item bg-white border rounded mb-sm shadow-sm">
+          <summary class="faq-question p-md fw-bold d-flex justify-content-between align-items-center" style="cursor: pointer; list-style: none;">
+            <span>{faq.question}</span>
+            <span class="faq-icon text-primary">+</span>
+          </summary>
+          <div class="faq-answer p-md pt-0 text-muted border-top text-sm">
+            {faq.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+    
+    <div class="text-center">
+      <Button href={data.cta.href} variant="outline-primary">{data.cta.label}</Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Hide the default marker in webkit */
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+  /* Toggle icon behavior */
+  details[open] summary .faq-icon {
+    transform: rotate(45deg);
+  }
+  .faq-icon {
+    transition: transform 0.3s ease;
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+</style>

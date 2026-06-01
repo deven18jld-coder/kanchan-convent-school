@@ -1,0 +1,129 @@
+/* src/styles/components.css */
+
+/* Button Base Styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+  color: var(--color-surface);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+}
+
+/* Card Base Styles */
+.card {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing-lg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: var(--spacing-md);
+}
+
+.form-label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(26, 58, 107, 0.1);
+}
+
+.btn-outline-white {
+  background-color: transparent;
+  color: var(--color-surface);
+  border: 2px solid var(--color-surface);
+}
+
+.btn-outline-white:hover {
+  background-color: var(--color-surface);
+  color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+/* Page Header Component */
+.page-header {
+  background: linear-gradient(135deg, var(--color-primary) 0%, #102445 100%);
+  padding: var(--spacing-3xl) 0;
+  text-align: center;
+  color: var(--color-surface);
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header h1 {
+  color: var(--color-surface);
+  font-size: 3rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.page-header p {
+  color: var(--color-text-secondary);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.25rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .page-header {
+    padding: var(--spacing-2xl) 0;
+  }
+  .page-header h1 {
+    font-size: 2.25rem;
+  }
+  .page-header p {
+    font-size: 1rem;
+  }
+}

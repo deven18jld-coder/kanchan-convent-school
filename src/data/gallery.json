@@ -1,0 +1,44 @@
+[
+  {
+    "id": "gal-001",
+    "title": "Smart Classrooms",
+    "url": "/images/gallery/smart-class.webp",
+    "category": "Infrastructure",
+    "alt": "Students learning in a modern smart classroom"
+  },
+  {
+    "id": "gal-002",
+    "title": "Science Laboratory",
+    "url": "/images/gallery/science-lab.webp",
+    "category": "Infrastructure",
+    "alt": "Students conducting experiments in the chemistry lab"
+  },
+  {
+    "id": "gal-003",
+    "title": "Basketball Court",
+    "url": "/images/gallery/basketball.webp",
+    "category": "Sports",
+    "alt": "Students playing a basketball match"
+  },
+  {
+    "id": "gal-004",
+    "title": "Annual Function 2025",
+    "url": "/images/gallery/annual-function.webp",
+    "category": "Events",
+    "alt": "Students performing a cultural dance on stage"
+  },
+  {
+    "id": "gal-005",
+    "title": "Library",
+    "url": "/images/gallery/library.webp",
+    "category": "Infrastructure",
+    "alt": "Students reading quietly in the school library"
+  },
+  {
+    "id": "gal-006",
+    "title": "Art Exhibition",
+    "url": "/images/gallery/art-exhibition.webp",
+    "category": "Events",
+    "alt": "Beautiful artwork displayed during the student art exhibition"
+  }
+]

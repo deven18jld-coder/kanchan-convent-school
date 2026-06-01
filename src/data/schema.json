@@ -1,0 +1,28 @@
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "SchoolName",
+  "url": "https://www.schoolname.edu.in",
+  "logo": "https://www.schoolname.edu.in/images/logo.png",
+  "description": "Nurturing Curious Minds Since 1998. CBSE Affiliated School from Nursery to XII located in Jaipur, Rajasthan.",
+  "foundingDate": "1998",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "123 School Road",
+    "addressLocality": "City",
+    "addressRegion": "State",
+    "postalCode": "123456",
+    "addressCountry": "IN"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+91-98765-43210",
+    "contactType": "Admissions and General Inquiry",
+    "email": "info@schoolname.edu.in"
+  },
+  "sameAs": [
+    "https://facebook.com/schoolname",
+    "https://instagram.com/schoolname",
+    "https://youtube.com/schoolname"
+  ]
+}

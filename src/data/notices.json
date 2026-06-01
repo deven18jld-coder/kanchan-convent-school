@@ -1,0 +1,26 @@
+[
+  {
+    "id": "not-001",
+    "title": "Admissions Open for Academic Year 2025-26",
+    "date": "2026-06-01",
+    "content": "Admissions are now open for Nursery to Class IX and Class XI. Please visit the school office or apply online.",
+    "isImportant": true,
+    "fileUrl": "/downloads/admission-notice.pdf"
+  },
+  {
+    "id": "not-002",
+    "title": "Summer Vacation Schedule",
+    "date": "2026-05-15",
+    "content": "The school will remain closed for summer vacations from May 20th to June 30th. Classes will resume on July 1st.",
+    "isImportant": false,
+    "fileUrl": null
+  },
+  {
+    "id": "not-003",
+    "title": "Parent-Teacher Meeting (PTM)",
+    "date": "2026-08-05",
+    "content": "A PTM for classes I to XII will be held on Saturday, August 10th, from 9:00 AM to 12:00 PM.",
+    "isImportant": true,
+    "fileUrl": null
+  }
+]
