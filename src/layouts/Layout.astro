@@ -14,9 +14,13 @@ import { getOgImage } from '../utils/imageLoader';
 interface Props {
 	title: string;
 	description?: string;
+	ogTitle?: string;
+	ogDescription?: string;
+	twitterTitle?: string;
+	twitterDescription?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, ogTitle, ogDescription, twitterTitle, twitterDescription } = Astro.props;
 const defaultFallback = siteData.home?.hero?.bgImage || '/images/hero/hero-main.webp';
 const ogImage = new URL(getOgImage(defaultFallback), Astro.site || Astro.url).toString();
 ---
@@ -31,15 +35,15 @@ const ogImage = new URL(getOgImage(defaultFallback), Astro.site || Astro.url).to
 		<meta name="generator" content={Astro.generator} />
 		
 		<!-- Open Graph / Social Media Meta Tags -->
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
+		<meta property="og:title" content={ogTitle || title} />
+		<meta property="og:description" content={ogDescription || description} />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={Astro.url} />
 		<meta property="og:image" content={ogImage} />
 		
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content={title} />
-		<meta name="twitter:description" content={description} />
+		<meta name="twitter:title" content={twitterTitle || title} />
+		<meta name="twitter:description" content={twitterDescription || description} />
 		<meta name="twitter:image" content={ogImage} />
 		
 		<!-- Google Fonts: Inter and Playfair Display -->

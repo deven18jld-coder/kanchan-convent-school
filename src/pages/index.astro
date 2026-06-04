@@ -47,7 +47,14 @@ const sections = Object.entries(siteData.home)
   .sort(([, a], [, b]) => (a.order || 99) - (b.order || 99));
 ---
 
-<Layout title={seo.title} description={seo.description}>
+<Layout 
+  title={seo.title} 
+  description={seo.description}
+  ogTitle={seo.ogTitle}
+  ogDescription={seo.ogDescription}
+  twitterTitle={seo.twitterTitle}
+  twitterDescription={seo.twitterDescription}
+>
   {sections.map(([key]) => {
     const Component = componentMap[key];
     if (Component) return <Component />;
