@@ -106,15 +106,27 @@ export function getHybridGalleryImages(galleryJsonData: any[]): any[] {
 export function getAboutPreviewImage(fallbackUrl: string): string {
   try {
     const folderPath = path.join(process.cwd(), 'public/images/about-preview');
+    console.log('\\n[DEBUG AboutPreview Loader] Scanning folder path:', folderPath);
+    
+    if (!fs.existsSync(folderPath)) {
+      console.warn('[DEBUG AboutPreview Loader] EXACT REASON: Folder does not exist at ' + folderPath + '. Falling back to:', fallbackUrl);
+      return fallbackUrl;
+    }
+    
     const files = getSafeDir(folderPath);
+    console.log('[DEBUG AboutPreview Loader] Files found in folder:', files);
     
     // Look for first image with supported extension
-    const match = files.find(file => /\\.(webp|jpg|jpeg|png)$/i.test(file));
+    const match = files.find(file => /\.(webp|jpg|jpeg|png)$/i.test(file));
     if (match) {
-      return `/images/about-preview/${match}`;
+      const resolved = `/images/about-preview/${match}`;
+      console.log('[DEBUG AboutPreview Loader] MATCH FOUND. Resolving to URL:', resolved);
+      return resolved;
+    } else {
+      console.warn('[DEBUG AboutPreview Loader] EXACT REASON: Folder exists, but no supported image files (.webp, .jpg, .jpeg, .png) found. Files were:', files, 'Falling back to:', fallbackUrl);
     }
   } catch (e) {
-    // fallback
+    console.error('[DEBUG AboutPreview Loader] EXACT REASON: Exception during execution:', e);
   }
   return fallbackUrl;
 }
@@ -130,3 +142,4 @@ export function getOgImage(fallbackUrl: string): string {
   }
   return getHeroImage(fallbackUrl);
 }
+
