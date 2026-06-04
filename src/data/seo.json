@@ -1,46 +1,46 @@
 {
+  "404": {
+    "title": "Page Not Found - Kanchan Convent",
+    "description": "The page you are looking for does not exist."
+  },
   "index": {
-    "title": "Home - SchoolName | Premium Static School Website",
-    "description": "Welcome to SchoolName, nurturing curious minds since 1998. Explore our CBSE affiliated programs from Nursery to XII."
+    "title": "Home - Kanchan Convent | Premium Static School Website",
+    "description": "Welcome to Kanchan Convent, nurturing curious minds since 1993. Explore our CBSE affiliated programs from Nursery to XII."
   },
   "about": {
-    "title": "About Us - SchoolName",
-    "description": "Learn about SchoolName's history, vision, mission, and the core values that drive our educational excellence."
+    "title": "About Us - Kanchan Convent",
+    "description": "Learn about Kanchan Convent's history, vision, mission, and the core values that drive our educational excellence."
   },
   "academics": {
-    "title": "Academics - SchoolName",
-    "description": "Discover the academic curriculum, teaching methodologies, and learning stages at SchoolName."
+    "title": "Academics - Kanchan Convent",
+    "description": "Discover the academic curriculum, teaching methodologies, and learning stages at Kanchan Convent."
   },
   "admissions": {
-    "title": "Admissions - SchoolName",
-    "description": "Apply for admission at SchoolName for the 2025-26 academic year. Review eligibility and fee structures."
+    "title": "Admissions - Kanchan Convent",
+    "description": "Apply for admission at Kanchan Convent for the 2025-26 academic year. Review eligibility and fee structures."
   },
   "facilities": {
-    "title": "Facilities - SchoolName",
-    "description": "Explore the state-of-the-art facilities at SchoolName including smart classrooms, labs, and sports infrastructure."
+    "title": "Facilities - Kanchan Convent",
+    "description": "Explore the state-of-the-art facilities at Kanchan Convent including smart classrooms, labs, and sports infrastructure."
   },
   "gallery": {
-    "title": "Gallery - SchoolName",
-    "description": "View photos of SchoolName campus, events, classrooms, and student activities."
+    "title": "Gallery - Kanchan Convent",
+    "description": "View photos of Kanchan Convent campus, events, classrooms, and student activities."
   },
   "events": {
-    "title": "Events - SchoolName",
-    "description": "Stay updated with the latest news, events, and cultural programs at SchoolName."
+    "title": "Events - Kanchan Convent",
+    "description": "Stay updated with the latest news, events, and cultural programs at Kanchan Convent."
   },
   "notice-board": {
-    "title": "Notice Board - SchoolName",
-    "description": "Important announcements, holiday lists, and exam schedules for SchoolName students and parents."
+    "title": "Notice Board - Kanchan Convent",
+    "description": "Important announcements, holiday lists, and exam schedules for Kanchan Convent students and parents."
   },
   "contact": {
-    "title": "Contact Us - SchoolName",
-    "description": "Get in touch with SchoolName. Find our address, phone number, and send us an inquiry."
+    "title": "Contact Us - Kanchan Convent",
+    "description": "Get in touch with Kanchan Convent. Find our address, phone number, and send us an inquiry."
   },
   "faqs": {
-    "title": "FAQs - SchoolName",
-    "description": "Frequently asked questions regarding admissions, academics, and facilities at SchoolName."
-  },
-  "404": {
-    "title": "Page Not Found - SchoolName",
-    "description": "The page you are looking for does not exist."
+    "title": "FAQs - Kanchan Convent",
+    "description": "Frequently asked questions regarding admissions, academics, and facilities at Kanchan Convent."
   }
 }

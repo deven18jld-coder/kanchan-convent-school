@@ -53,53 +53,80 @@ export function getMatchedImage(folder: string, id: string, fallbackUrl: string)
   return fallbackUrl;
 }
 
-// Format: { id, title, url, category, alt }
 export function getHybridGalleryImages(galleryJsonData: any[]): any[] {
   try {
+    const siteDataPath = path.join(process.cwd(), 'src/data/site.json');
+    let schoolName = "Kanchan Convent School, Kaisarganj";
+    if (fs.existsSync(siteDataPath)) {
+      try {
+        const siteJson = JSON.parse(fs.readFileSync(siteDataPath, 'utf-8'));
+        if (siteJson?.school?.name) schoolName = siteJson.school.name;
+      } catch(e) {}
+    }
+
     const folderPath = path.join(process.cwd(), 'public/images/gallery');
-    const files = getSafeDir(folderPath).filter(file => /\.(webp|jpg|jpeg|png)$/i.test(file));
+    let entries: string[] = [];
+    if (fs.existsSync(folderPath)) {
+      entries = fs.readdirSync(folderPath);
+    }
     
     const finalGallery = [];
-    const processedFiles = new Set();
-    
-    // First, process everything in JSON
-    for (const item of galleryJsonData) {
-      // Look for matching file in folder by ID
-      const fileMatch = files.find(f => f.startsWith(item.id + '.'));
+
+    for (const entry of entries) {
+      const fullPath = path.join(folderPath, entry);
+      const stat = fs.statSync(fullPath);
       
-      if (fileMatch) {
+      if (stat.isDirectory()) {
+        const subCategory = entry.charAt(0).toUpperCase() + entry.slice(1);
+        const subFiles = fs.readdirSync(fullPath);
+        for (const subFile of subFiles) {
+          if (/\.(webp|jpg|jpeg|png)$/i.test(subFile)) {
+            finalGallery.push({
+              url: `/images/gallery/${entry}/${subFile}`,
+              category: subCategory,
+              alt: `${subCategory} - ${schoolName}`
+            });
+          }
+        }
+      } else if (/\.(webp|jpg|jpeg|png)$/i.test(entry)) {
         finalGallery.push({
-          ...item,
-          url: `/images/gallery/${fileMatch}`
-        });
-        processedFiles.add(fileMatch);
-      } else {
-        // Fallback to json url if file doesn't exist in folder
-        finalGallery.push(item);
-      }
-    }
-    
-    // Second, add any images found in folder that weren't in JSON
-    for (const file of files) {
-      if (!processedFiles.has(file)) {
-        // Generate fallback metadata
-        // e.g. "sports-day.webp" -> "Sports Day"
-        const nameWithoutExt = file.substring(0, file.lastIndexOf('.'));
-        const formattedName = nameWithoutExt.replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-        
-        finalGallery.push({
-          id: nameWithoutExt,
-          title: formattedName,
-          url: `/images/gallery/${file}`,
-          category: 'Other',
-          alt: formattedName
+          url: `/images/gallery/${entry}`,
+          category: 'Gallery',
+          alt: `Gallery - ${schoolName}`
         });
       }
     }
-    
-    return finalGallery;
+
+    return finalGallery.length > 0 ? finalGallery : galleryJsonData;
   } catch (e) {
-    // Completely fail-safe fallback to JSON data only
     return galleryJsonData;
   }
+}
+
+export function getAboutPreviewImage(fallbackUrl: string): string {
+  try {
+    const folderPath = path.join(process.cwd(), 'public/images/about-preview');
+    const files = getSafeDir(folderPath);
+    
+    // Look for first image with supported extension
+    const match = files.find(file => /\\.(webp|jpg|jpeg|png)$/i.test(file));
+    if (match) {
+      return `/images/about-preview/${match}`;
+    }
+  } catch (e) {
+    // fallback
+  }
+  return fallbackUrl;
+}
+
+export function getOgImage(fallbackUrl: string): string {
+  try {
+    const ogPath = path.join(process.cwd(), 'public/images/og-image.webp');
+    if (fs.existsSync(ogPath)) {
+      return '/images/og-image.webp';
+    }
+  } catch (e) {
+    // fallback
+  }
+  return getHeroImage(fallbackUrl);
 }

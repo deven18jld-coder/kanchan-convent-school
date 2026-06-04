@@ -1,28 +1,27 @@
 {
   "@context": "https://schema.org",
   "@type": "EducationalOrganization",
-  "name": "SchoolName",
-  "url": "https://www.schoolname.edu.in",
-  "logo": "https://www.schoolname.edu.in/images/logo.png",
-  "description": "Nurturing Curious Minds Since 1998. CBSE Affiliated School from Nursery to XII located in Jaipur, Rajasthan.",
-  "foundingDate": "1998",
+  "name": "Kanchan Convent School, Kaisarganj",
+  "url": "[Website URL TBD]",
+  "logo": "[Logo URL TBD]",
+  "description": "Our Motive is to make every student educated, skillful and disciplined so that they can contribute to the nation. CBSE Affiliated.",
+  "foundingDate": "1993",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "123 School Road",
-    "addressLocality": "City",
-    "addressRegion": "State",
-    "postalCode": "123456",
+    "streetAddress": "Opposite C.H.C Hospital, Ainy Hatinsi",
+    "addressLocality": "Kaisarganj",
+    "addressRegion": "Uttar Pradesh",
+    "postalCode": "271903",
     "addressCountry": "IN"
   },
   "contactPoint": {
     "@type": "ContactPoint",
-    "telephone": "+91-98765-43210",
+    "telephone": "+91-9670798697",
     "contactType": "Admissions and General Inquiry",
-    "email": "info@schoolname.edu.in"
+    "email": "kanchanconvent.ksg@gmail.com"
   },
   "sameAs": [
-    "https://facebook.com/schoolname",
-    "https://instagram.com/schoolname",
-    "https://youtube.com/schoolname"
+    "https://www.facebook.com/profile.php?id=100054443547019",
+    "https://www.youtube.com/channel/UCI3ArFrrxA58eFCONwIJiDg"
   ]
 }

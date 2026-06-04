@@ -1,16 +1,16 @@
 ---
-import siteData from '../../data/site.json';
-
-const data = siteData.home.tourVideo;
 ---
 
 <section class="tour-video py-section text-center">
   <div class="container">
-    <h2 class="mb-lg">{data.title}</h2>
+    <h2 class="mb-sm">Virtual Campus Tour</h2>
+    <p class="mb-lg" style="max-width: 700px; margin: 0 auto; color: #4b5563; font-size: 1.125rem;">
+      Explore the campus, classrooms, activities, and learning environment of Kanchan Convent School, Kaisarganj.
+    </p>
     <div class="video-container shadow-lg rounded" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 900px; margin: 0 auto;">
       <iframe 
-        src={data.videoUrl} 
-        title={data.title} 
+        src="https://www.youtube.com/embed/nxGXtYQEeP4" 
+        title="Virtual Campus Tour" 
         frameborder="0" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
         allowfullscreen 

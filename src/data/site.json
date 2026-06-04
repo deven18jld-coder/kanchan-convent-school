@@ -1,44 +1,68 @@
 {
   "school": {
-    "name": "SchoolName",
-    "shortName": "SN",
-    "tagline": "Nurturing Curious Minds Since 1998",
-    "affiliationNo": "XXXXXX",
-    "establishedYear": 1998,
-    "logoText": "SchoolName"
+    "name": "Kanchan Convent School, Kaisarganj",
+    "shortName": "Kanchan Convent",
+    "tagline": "Our Motive is to make every student educated, skillful and disciplined so that they can contribute to the nation.",
+    "affiliationNo": "09500203014",
+    "establishedYear": 1993,
+    "logoText": "Kanchan Convent"
   },
   "contact": {
-    "address": "123 School Road, City, State, 123456",
-    "phoneMain": "+91-98765-43210",
-    "phoneMainDisplay": "+91-98765-43210",
-    "phoneAdmissions": "+91-98765-43211",
-    "email": "info@schoolname.edu.in",
-    "whatsappNumber": "919876543210",
-    "whatsappDisplay": "WhatsApp Us",
-    "mapsLink": "https://maps.google.com/?q=school+address",
-    "officeHours": "Mon-Sat, 8:00 AM - 4:00 PM"
+    "address": "Opposite C.H.C Hospital, Kaisarganj, Ainy Hatinsi, Uttar Pradesh 271903",
+    "phoneMain": "+91-9670798697",
+    "phoneMainDisplay": "+91 9670798697",
+    "phoneAdmissions": "[Admissions Phone TBD]",
+    "email": "kanchanconvent.ksg@gmail.com",
+    "whatsappNumber": "919670798697",
+    "whatsappDisplay": "+91 9670798697",
+    "mapsLink": "https://maps.app.goo.gl/KGcjtwbRZRNM5J51A",
+    "officeHours": "Mon-Sat: 9:00 AM – 3:00 PM, Sun: Closed"
   },
   "social": {
-    "facebook": "https://facebook.com/schoolname",
-    "youtube": "https://youtube.com/schoolname",
-    "instagram": "https://instagram.com/schoolname"
+    "facebook": "https://www.facebook.com/profile.php?id=100054443547019",
+    "youtube": "https://www.youtube.com/channel/UCI3ArFrrxA58eFCONwIJiDg",
+    "instagram": null
   },
   "navigation": [
-    { "label": "Home", "href": "/" },
-    { "label": "About", "href": "/about" },
-    { "label": "Academics", "href": "/academics" },
-    { "label": "Admissions", "href": "/admissions" },
-    { "label": "Facilities", "href": "/facilities" },
-    { "label": "Gallery", "href": "/gallery" },
-    { "label": "Events", "href": "/events" },
-    { "label": "Contact", "href": "/contact" }
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "About",
+      "href": "/about"
+    },
+    {
+      "label": "Academics",
+      "href": "/academics"
+    },
+    {
+      "label": "Admissions",
+      "href": "/admissions"
+    },
+    {
+      "label": "Facilities",
+      "href": "/facilities"
+    },
+    {
+      "label": "Gallery",
+      "href": "/gallery"
+    },
+    {
+      "label": "Events",
+      "href": "/events"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact"
+    }
   ],
   "home": {
     "hero": {
       "enabled": true,
       "order": 1,
-      "headline": "Nurturing Curious Minds Since 1998",
-      "subheadline": "CBSE Affiliated | Classes Nursery to XII | Jaipur, Rajasthan",
+      "headline": "Kanchan Convent School, Kaisarganj",
+      "subheadline": "Our Motive is to make every student educated, skillful and disciplined so that they can contribute to the nation.",
       "bgImage": "/images/hero.webp",
       "ctaPrimary": {
         "label": "Explore Admissions",
@@ -53,11 +77,31 @@
       "enabled": true,
       "order": 2,
       "items": [
-        { "icon": "🏆", "number": "25+", "label": "Years of Excellence" },
-        { "icon": "🎓", "number": "1,200+", "label": "Students" },
-        { "icon": "📊", "number": "98%", "label": "Board Results" },
-        { "icon": "🏛️", "number": "CBSE", "label": "Affiliated" },
-        { "icon": "👨‍🏫", "number": "40+", "label": "Qualified Faculty" }
+        {
+          "icon": "🏆",
+          "number": "25+",
+          "label": "Years of Excellence"
+        },
+        {
+          "icon": "🎓",
+          "number": "1,200+",
+          "label": "Students"
+        },
+        {
+          "icon": "📊",
+          "number": "98%",
+          "label": "Board Results"
+        },
+        {
+          "icon": "🏛️",
+          "number": "CBSE",
+          "label": "Affiliated"
+        },
+        {
+          "icon": "👨‍🏫",
+          "number": "40+",
+          "label": "Qualified Faculty"
+        }
       ]
     },
     "admissionsBanner": {
@@ -65,7 +109,7 @@
       "order": 3,
       "title": "Admissions Open 2025-26",
       "subtitle": "Secure your child's future today. Limited seats available.",
-      "formAction": "https://formspree.io/f/placeholder",
+      "formAction": "[Form Action URL TBD]",
       "classes": [
         "Pre-Primary",
         "Primary (I-V)",
@@ -76,14 +120,17 @@
     "aboutPreview": {
       "enabled": true,
       "order": 4,
-      "title": "Welcome to SchoolName",
-      "content": "Founded in 1998, SchoolName is dedicated to providing an enriching and challenging environment where every student is encouraged to fulfill their potential. Our CBSE affiliated curriculum ensures holistic development.",
+      "title": "Welcome to Kanchan Convent School, Kaisarganj",
+      "content": "Established in 1993, Kanchan Convent School, Kaisarganj is a Private Unaided Convent school offering education from Primary to Secondary levels. Our Motive is to make every student educated, skillful and disciplined so that they can contribute to the nation. We are affiliated with the CBSE board.",
       "bullets": [
-        "Low student-teacher ratio",
-        "Safe, secure 24/7 campus",
-        "Focus on holistic development"
+        "Student Teacher Ratio: 29:1",
+        "Co-Educational English Medium",
+        "5 Classrooms"
       ],
-      "cta": { "label": "Learn More About Us", "href": "/about" },
+      "cta": {
+        "label": "Learn More About Us",
+        "href": "/about"
+      },
       "image": "/images/about-preview.webp"
     },
     "whyChooseUs": {
@@ -91,72 +138,150 @@
       "order": 5,
       "title": "Why Choose Us",
       "items": [
-        { "title": "CBSE Curriculum", "description": "Nationally recognized robust syllabus.", "icon": "📚" },
-        { "title": "Smart Classrooms", "description": "Interactive tech-enabled learning.", "icon": "💻" },
-        { "title": "Safe Campus", "description": "24/7 security and monitored grounds.", "icon": "🛡️" },
-        { "title": "Sports Focus", "description": "Excellent sports infrastructure.", "icon": "⚽" },
-        { "title": "Expert Faculty", "description": "Highly trained and experienced teachers.", "icon": "👩‍🏫" },
-        { "title": "Holistic Growth", "description": "Emphasis on all-around development.", "icon": "🌱" }
+        {
+          "title": "CBSE Curriculum",
+          "description": "Nationally recognized robust syllabus.",
+          "icon": "📚"
+        },
+        {
+          "title": "Smart Classrooms",
+          "description": "Interactive tech-enabled learning.",
+          "icon": "💻"
+        },
+        {
+          "title": "Safe Campus",
+          "description": "24/7 security and monitored grounds.",
+          "icon": "🛡️"
+        },
+        {
+          "title": "Sports Focus",
+          "description": "Excellent sports infrastructure.",
+          "icon": "⚽"
+        },
+        {
+          "title": "Expert Faculty",
+          "description": "Highly trained and experienced teachers.",
+          "icon": "👩‍🏫"
+        },
+        {
+          "title": "Holistic Growth",
+          "description": "Emphasis on all-around development.",
+          "icon": "🌱"
+        }
       ]
     },
     "principalPreview": {
       "enabled": true,
       "order": 6,
-      "name": "Dr. Sarah Johnson",
-      "title": "Principal",
-      "quote": "Education is not just about academics; it's about building character and fostering a lifelong love for learning.",
+      "name": "Mr. Manish Srivastava",
+      "title": "Principal & Senior Journalist, Dainik Jagran",
+      "quote": "Education is not merely the acquisition of knowledge; it is the foundation of character, discipline, and responsible citizenship. Our mission is to empower every student with the confidence, values, and skills needed to contribute positively to society and the nation.",
       "image": "/images/principal.webp",
-      "cta": { "label": "Read Full Message", "href": "/about#principal-message" }
+      "cta": {
+        "label": "Read Full Message",
+        "href": "/about#principal-message"
+      }
     },
     "academicsOverview": {
       "enabled": true,
       "order": 7,
       "title": "Academics",
       "items": [
-        { "stage": "Pre-Primary", "highlights": "Play-way method, focusing on motor skills.", "icon": "🖍️" },
-        { "stage": "Primary (I-V)", "highlights": "Foundational literacy and numeracy.", "icon": "🎒" },
-        { "stage": "Middle (VI-VIII)", "highlights": "Exploratory learning and critical thinking.", "icon": "🔬" },
-        { "stage": "Secondary (IX-X)", "highlights": "Board prep and conceptual clarity.", "icon": "📐" },
-        { "stage": "Senior Sec. (XI-XII)", "highlights": "Specialized streams (Science/Commerce).", "icon": "🎓" }
+        {
+          "stage": "Pre-Primary",
+          "highlights": "Play-way method, focusing on motor skills.",
+          "icon": "🖍️"
+        },
+        {
+          "stage": "Primary (I-V)",
+          "highlights": "Foundational literacy and numeracy.",
+          "icon": "🎒"
+        },
+        {
+          "stage": "Middle (VI-VIII)",
+          "highlights": "Exploratory learning and critical thinking.",
+          "icon": "🔬"
+        },
+        {
+          "stage": "Secondary (IX-X)",
+          "highlights": "Board prep and conceptual clarity.",
+          "icon": "📐"
+        },
+        {
+          "stage": "Senior Sec. (XI-XII)",
+          "highlights": "Specialized streams (Science/Commerce).",
+          "icon": "🎓"
+        }
       ],
-      "cta": { "label": "View Full Curriculum", "href": "/academics" }
+      "cta": {
+        "label": "View Full Curriculum",
+        "href": "/academics"
+      }
     },
     "facilitiesOverview": {
       "enabled": true,
       "order": 8,
       "title": "World-Class Facilities",
       "items": [
-        { "name": "Science Labs", "desc": "Modern equipment for hands-on learning.", "icon": "🧪" },
-        { "name": "Library", "desc": "Vast collection of books and digital resources.", "icon": "📚" },
-        { "name": "Sports Ground", "desc": "Acres of lush green playground.", "icon": "⚽" },
-        { "name": "Transport", "desc": "Safe, GPS-enabled bus fleet.", "icon": "🚌" }
+        {
+          "name": "Science Labs",
+          "desc": "Modern equipment for hands-on learning.",
+          "icon": "🧪"
+        },
+        {
+          "name": "Library",
+          "desc": "Vast collection of books and digital resources.",
+          "icon": "📚"
+        },
+        {
+          "name": "Sports Ground",
+          "desc": "Acres of lush green playground.",
+          "icon": "⚽"
+        },
+        {
+          "name": "Transport",
+          "desc": "Safe, GPS-enabled bus fleet.",
+          "icon": "🚌"
+        }
       ],
-      "cta": { "label": "See All Facilities", "href": "/facilities" }
+      "cta": {
+        "label": "See All Facilities",
+        "href": "/facilities"
+      }
     },
     "galleryPreview": {
       "enabled": true,
       "order": 9,
       "title": "Campus Life",
-      "cta": { "label": "View Full Gallery", "href": "/gallery" }
+      "cta": {
+        "label": "View Full Gallery",
+        "href": "/gallery"
+      }
     },
     "tourVideo": {
       "enabled": true,
       "order": 10,
       "title": "Virtual Campus Tour",
-      "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      "videoUrl": "[Tour Video URL TBD]",
       "poster": "/images/video-poster.webp"
     },
     "eventsPreview": {
       "enabled": true,
       "order": 11,
       "title": "Upcoming Events",
-      "cta": { "label": "View All Events", "href": "/events" }
+      "cta": {
+        "label": "View All Events",
+        "href": "/events"
+      }
     },
     "noticeBoardPreview": {
       "enabled": true,
       "order": 12,
       "title": "Notice Board",
-      "cta": { "label": "View All Notices", "href": "/notice-board" }
+      "cta": {
+        "label": "View All Notices",
+        "href": "/notice-board"
+      }
     },
     "testimonials": {
       "enabled": true,
@@ -169,44 +294,77 @@
       "title": "Google Reviews",
       "rating": "4.9",
       "totalReviews": "120+",
-      "cta": { "label": "Read all reviews on Google", "href": "#" },
+      "cta": {
+        "label": "Read all reviews on Google",
+        "href": "[Google Reviews Link TBD]"
+      },
       "reviews": [
-        { "name": "Amit Kumar", "rating": 5, "text": "Excellent school with great teachers.", "date": "2 months ago" },
-        { "name": "Neha Singh", "rating": 5, "text": "The best decision for my child's future.", "date": "1 month ago" },
-        { "name": "Ravi Sharma", "rating": 4, "text": "Good facilities and focus on sports.", "date": "3 months ago" }
+        {
+          "name": "Amit Kumar",
+          "rating": 5,
+          "text": "Excellent school with great teachers.",
+          "date": "2 months ago"
+        },
+        {
+          "name": "Neha Singh",
+          "rating": 5,
+          "text": "The best decision for my child's future.",
+          "date": "1 month ago"
+        },
+        {
+          "name": "Ravi Sharma",
+          "rating": 4,
+          "text": "Good facilities and focus on sports.",
+          "date": "3 months ago"
+        }
       ]
     },
     "faqs": {
       "enabled": true,
       "order": 15,
       "title": "Frequently Asked Questions",
-      "cta": { "label": "See All FAQs", "href": "/faqs" }
+      "cta": {
+        "label": "See All FAQs",
+        "href": "/faqs"
+      }
     },
     "locationMap": {
       "enabled": true,
       "order": 16,
       "title": "Visit Our Campus",
-      "mapEmbed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113911.3934373408!2d75.7237627!3d26.8851417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c4adf4c57e281%3A0xce1c63a0cf22e09!2sJaipur%2C%20Rajasthan!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+      "mapEmbed": "https://maps.google.com/maps?q=Kanchan+Convent+School,+Kaisarganj&t=&z=15&ie=UTF8&iwloc=&output=embed"
     }
   },
   "downloads": [
-    { "label": "Download Prospectus", "href": "/downloads/prospectus.pdf" },
-    { "label": "Fee Structure", "href": "/downloads/fee-structure.pdf" },
-    { "label": "Academic Calendar", "href": "/downloads/academic-calendar.pdf" },
-    { "label": "Syllabus", "href": "/downloads/syllabus.pdf" }
+    {
+      "label": "Download Prospectus",
+      "href": "/downloads/prospectus.pdf"
+    },
+    {
+      "label": "Fee Structure",
+      "href": "/downloads/fee-structure.pdf"
+    },
+    {
+      "label": "Academic Calendar",
+      "href": "/downloads/academic-calendar.pdf"
+    },
+    {
+      "label": "Syllabus",
+      "href": "/downloads/syllabus.pdf"
+    }
   ],
   "pages": {
     "about": {
       "enabled": true,
       "order": 1,
       "title": "About Us",
-      "history": "Founded in 1998, SchoolName began with a vision to provide quality education that balances traditional values with modern methodologies. Over the past 25 years, we have grown from a small institution of 100 students to a thriving community of over 1,200 learners.",
+      "history": "Established in 1993, Kanchan Convent School, Kaisarganj began with a vision to provide quality education... [Full History TBD]",
       "vision": "To be a center of excellence that nurtures individuals to become global citizens with a strong moral compass.",
       "mission": "Our mission is to foster a stimulating learning environment that encourages critical thinking, creativity, and a lifelong love for learning.",
       "principalMessage": {
         "title": "Message from the Principal",
-        "content": "Welcome to SchoolName. Education is a shared commitment between dedicated teachers, motivated students, and enthusiastic parents. Today, the role of a school is not only to pursue academic excellence but also to motivate and empower its students to be lifelong learners, critical thinkers, and productive members of an ever-changing global society. We provide an atmosphere to our students for multifaceted development, where children are encouraged to channelize their potential in the pursuit of excellence. We are constantly improving our teaching methodology so that it turns learning into combination of classroom study, research, and scientific discovery.",
-        "name": "Dr. Sarah Johnson",
+        "content": "Education is not merely the acquisition of knowledge; it is the foundation of character, discipline, and responsible citizenship. Our mission is to empower every student with the confidence, values, and skills needed to contribute positively to society and the nation.",
+        "name": "Mr. Manish Srivastava",
         "image": "/images/principal.webp"
       }
     },
@@ -215,7 +373,7 @@
       "order": 2,
       "title": "Our Curriculum",
       "subtitle": "Comprehensive Learning for Every Stage",
-      "content": "SchoolName follows the CBSE curriculum, designed to provide holistic education that prepares students for the challenges of tomorrow."
+      "content": "Kanchan Convent follows the CBSE curriculum, designed to provide holistic education that prepares students for the challenges of tomorrow."
     },
     "admissions": {
       "enabled": true,
@@ -228,7 +386,7 @@
         "4. Pay the admission fee upon confirmation."
       ],
       "eligibility": "Admissions are open for classes Nursery to IX. Age criteria apply as per government regulations.",
-      "formAction": "https://formspree.io/f/placeholder"
+      "formAction": "[Form Action URL TBD]"
     },
     "facilities": {
       "enabled": true,
@@ -240,7 +398,7 @@
       "enabled": true,
       "order": 5,
       "title": "Photo Gallery",
-      "content": "Explore life at SchoolName."
+      "content": "Explore life at Kanchan Convent."
     },
     "events": {
       "enabled": true,
@@ -265,7 +423,7 @@
       "order": 9,
       "title": "Contact Us",
       "subtitle": "We'd love to hear from you.",
-      "formAction": "https://formspree.io/f/placeholder"
+      "formAction": "[Form Action URL TBD]"
     },
     "notFound": {
       "enabled": true,

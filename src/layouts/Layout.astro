@@ -8,6 +8,8 @@ import StickyCTA from '../components/ui/StickyCTA.astro';
 import AdmissionPopup from '../components/ui/AdmissionPopup.astro';
 import ScrollToTop from '../components/ui/ScrollToTop.astro';
 import schemaData from '../data/schema.json';
+import siteData from '../data/site.json';
+import { getOgImage } from '../utils/imageLoader';
 
 interface Props {
 	title: string;
@@ -15,6 +17,8 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
+const defaultFallback = siteData.home?.hero?.bgImage || '/images/hero/hero-main.webp';
+const ogImage = new URL(getOgImage(defaultFallback), Astro.site || Astro.url).toString();
 ---
 
 <!doctype html>
@@ -31,12 +35,12 @@ const { title, description } = Astro.props;
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={Astro.url} />
-		<meta property="og:image" content="/images/about-preview.webp" />
+		<meta property="og:image" content={ogImage} />
 		
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content="/images/about-preview.webp" />
+		<meta name="twitter:image" content={ogImage} />
 		
 		<!-- Google Fonts: Inter and Playfair Display -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">

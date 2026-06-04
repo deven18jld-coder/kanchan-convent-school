@@ -1,15 +1,17 @@
 ---
 import siteData from '../../data/site.json';
 import Button from '../ui/Button.astro';
+import { getAboutPreviewImage } from '../../utils/imageLoader';
 
 const data = siteData.home.aboutPreview;
+const aboutPreviewImage = getAboutPreviewImage(data.image);
 ---
 
 <section class="about-preview py-section bg-light">
   <div class="container">
     <div class="grid grid-2 align-items-center gap-lg">
       <div class="mb-lg-0 mb-md">
-        <img src={data.image} alt={data.title} class="img-fluid rounded shadow-sm" loading="lazy" style="width: 100%; object-fit: cover;" />
+        <img src={aboutPreviewImage} alt={data.title} class="img-fluid rounded shadow-sm" loading="lazy" style="width: 100%; object-fit: cover;" />
       </div>
       <div>
         <h2 class="mb-sm">{data.title}</h2>
