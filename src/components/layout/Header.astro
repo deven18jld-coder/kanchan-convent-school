@@ -8,6 +8,13 @@ const currentPath = Astro.url.pathname;
 ---
 
 <header class="header-wrapper">
+  <!-- Admission Ticker -->
+  <div class="ticker-wrapper" role="marquee" aria-live="off">
+    <div class="ticker-content">
+      🎓 Admissions Open for Session 2026–2027 &nbsp;|&nbsp; Apply Now for Nursery to Secondary Classes &nbsp;|&nbsp; 📚 प्रवेश प्रारंभ – सत्र 2026–2027 हेतु नामांकन जारी &nbsp;|&nbsp; Nursery से Secondary तक प्रवेश उपलब्ध &nbsp;|&nbsp; 📞 Contact: +91 9670798697
+    </div>
+  </div>
+
   <!-- Top Bar -->
   <div class="top-bar">
     <div class="container d-flex justify-content-between align-items-center flex-wrap" style="gap: 10px;">
@@ -67,6 +74,34 @@ const currentPath = Astro.url.pathname;
     z-index: 100;
     background-color: var(--color-surface);
     box-shadow: var(--shadow-sm);
+  }
+
+  /* Admission Ticker */
+  .ticker-wrapper {
+    background-color: #FFD700;
+    color: #1E3A8A;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 6px 0;
+    font-weight: 600;
+    font-size: 0.9rem;
+    position: relative;
+  }
+
+  .ticker-content {
+    display: inline-block;
+    padding-left: 100%;
+    animation: ticker-scroll 30s linear infinite;
+    will-change: transform;
+  }
+
+  .ticker-wrapper:hover .ticker-content {
+    animation-play-state: paused;
+  }
+
+  @keyframes ticker-scroll {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-100%, 0, 0); }
   }
 
   /* Top Bar */

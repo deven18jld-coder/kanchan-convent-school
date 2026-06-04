@@ -133,8 +133,13 @@ export function getAboutPreviewImage(fallbackUrl: string): string {
 
 export function getOgImage(fallbackUrl: string): string {
   try {
-    const ogPath = path.join(process.cwd(), 'public/images/og-image.webp');
-    if (fs.existsSync(ogPath)) {
+    const jpgPath = path.join(process.cwd(), 'public/images/og-image.jpg');
+    if (fs.existsSync(jpgPath)) {
+      return '/images/og-image.jpg';
+    }
+    
+    const webpPath = path.join(process.cwd(), 'public/images/og-image.webp');
+    if (fs.existsSync(webpPath)) {
       return '/images/og-image.webp';
     }
   } catch (e) {
