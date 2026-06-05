@@ -5,9 +5,12 @@ import { getPrincipalImage } from '../../utils/imageLoader';
 
 const data = siteData.home.principalPreview;
 const principalImageUrl = getPrincipalImage(data.image);
+
+const words = data.quote.split(' ');
+const teaserText = words.slice(0, 30).join(' ') + (words.length > 30 ? '...' : '');
 ---
 
-<section class="principal-preview py-section bg-secondary text-white">
+<section class="principal-preview py-section bg-secondary">
   <div class="container">
     <div class="d-flex flex-wrap align-items-center gap-lg">
       <div class="text-center mb-md mb-md-0" style="flex: 1 1 250px;" data-aos="fade-right">
@@ -15,13 +18,16 @@ const principalImageUrl = getPrincipalImage(data.image);
       </div>
       <div style="flex: 2 1 250px;" data-aos="fade-left">
         <blockquote class="blockquote">
-          <p class="mb-sm" style="font-family: 'Playfair Display', serif; font-size: 1.5rem; font-style: italic;">"{data.quote}"</p>
-          <footer class="blockquote-footer text-white-50">
-            <strong>{data.name}</strong>, <cite>{data.title}</cite>
+          <p class="mb-md" style="font-family: 'Playfair Display', serif; font-size: 1.6rem; font-style: italic; line-height: 1.7; color: #1f2937; font-weight: 500;">
+            "{teaserText}"
+          </p>
+          <footer class="blockquote-footer mt-md" style="color: #374151;">
+            <div style="font-size: 1.4rem; font-weight: 700; color: #111827; margin-bottom: 0.2rem;">{data.name}</div>
+            <div style="font-size: 1rem; font-weight: 500;">{data.title}</div>
           </footer>
         </blockquote>
         <div class="mt-md" data-aos="fade-up" data-aos-delay="100">
-          <Button href={data.cta.href} variant="outline-white">{data.cta.label}</Button>
+          <Button href={data.cta.href} variant="primary">{data.cta.label}</Button>
         </div>
       </div>
     </div>
