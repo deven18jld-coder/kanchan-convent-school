@@ -9,9 +9,9 @@ const heroBgImage = getHeroImage(hero.bgImage);
 
 <section class="hero" style={`background-image: linear-gradient(rgba(26, 58, 107, 0.7), rgba(26, 58, 107, 0.8)), url('${heroBgImage}')`}>
   <div class="container hero-content text-center">
-    <h1 class="hero-title">{hero.headline}</h1>
-    <p class="hero-subtitle">{hero.subheadline}</p>
-    <div class="hero-ctas d-flex justify-content-center gap-md">
+    <h1 class="hero-title" data-aos="fade-up">{hero.headline}</h1>
+    <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">{hero.subheadline}</p>
+    <div class="hero-ctas d-flex justify-content-center gap-md" data-aos="fade-up" data-aos-delay="200">
       <Button href={hero.ctaPrimary.href} variant="primary">{hero.ctaPrimary.label}</Button>
       <Button href={hero.ctaSecondary.href} variant="secondary" className="btn-outline-white">{hero.ctaSecondary.label}</Button>
     </div>
@@ -32,24 +32,15 @@ const heroBgImage = getHeroImage(hero.bgImage);
     color: var(--color-surface);
     font-size: clamp(2.5rem, 5vw, 4rem);
     margin-bottom: var(--spacing-md);
-    animation: fadeInUp 0.8s ease forwards;
-    opacity: 0;
-    transform: translateY(20px);
   }
   
   .hero-subtitle {
     color: #e2e8f0;
     font-size: 1.25rem;
     margin-bottom: var(--spacing-xl);
-    animation: fadeInUp 0.8s ease 0.2s forwards;
-    opacity: 0;
-    transform: translateY(20px);
   }
 
   .hero-ctas {
-    animation: fadeInUp 0.8s ease 0.4s forwards;
-    opacity: 0;
-    transform: translateY(20px);
   }
 
   /* Custom override for secondary button on dark background */
@@ -63,12 +54,6 @@ const heroBgImage = getHeroImage(hero.bgImage);
     color: var(--color-primary) !important;
   }
 
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
 
   @media (max-width: 768px) {
     .hero {

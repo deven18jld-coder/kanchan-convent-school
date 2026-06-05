@@ -11,8 +11,8 @@ const data = siteData.home.facilitiesOverview;
       <h2>{data.title}</h2>
     </div>
     <div class="grid grid-4 gap-md mb-lg">
-      {data.items.map(facility => (
-        <article class="facility-card text-center p-md bg-white rounded shadow-sm hover-lift">
+      {data.items.map((facility, index) => (
+        <article class="facility-card text-center p-md bg-white rounded shadow-sm hover-lift" data-aos="fade-up" data-aos-delay={index * 100}>
           <div class="facility-icon mb-sm" style="font-size: 2rem;">{facility.icon}</div>
           <h3 class="h5 mb-xs">{facility.name}</h3>
           <p class="text-muted text-sm">{facility.desc}</p>

@@ -7,12 +7,12 @@ const contact = siteData.contact;
 
 <section class="location-map py-section bg-light">
   <div class="container">
-    <div class="text-center mb-lg">
+    <div class="text-center mb-lg" data-aos="fade-left">
       <h2>{data.title}</h2>
       <p class="text-muted">{contact.address}</p>
     </div>
     
-    <div class="map-container shadow-md rounded overflow-hidden" style="width: 100%; max-width: 100%; height: 400px; position: relative;">
+    <div class="map-container shadow-md rounded overflow-hidden" style="width: 100%; max-width: 100%; height: 400px; position: relative;" data-aos="fade-right">
       <iframe 
         src={data.mapEmbed} 
         width="100%" 

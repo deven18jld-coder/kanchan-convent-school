@@ -10,17 +10,17 @@ const principalImageUrl = getPrincipalImage(data.image);
 <section class="principal-preview py-section bg-secondary text-white">
   <div class="container">
     <div class="d-flex flex-wrap align-items-center gap-lg">
-      <div class="text-center mb-md mb-md-0" style="flex: 1 1 250px;">
+      <div class="text-center mb-md mb-md-0" style="flex: 1 1 250px;" data-aos="fade-right">
         <img src={principalImageUrl} alt={data.name} class="rounded-circle shadow-lg" style="width: 250px; height: 250px; object-fit: cover; border: 4px solid white; max-width: 100%;" loading="lazy" />
       </div>
-      <div style="flex: 2 1 250px;">
+      <div style="flex: 2 1 250px;" data-aos="fade-left">
         <blockquote class="blockquote">
           <p class="mb-sm" style="font-family: 'Playfair Display', serif; font-size: 1.5rem; font-style: italic;">"{data.quote}"</p>
           <footer class="blockquote-footer text-white-50">
             <strong>{data.name}</strong>, <cite>{data.title}</cite>
           </footer>
         </blockquote>
-        <div class="mt-md">
+        <div class="mt-md" data-aos="fade-up" data-aos-delay="100">
           <Button href={data.cta.href} variant="outline-white">{data.cta.label}</Button>
         </div>
       </div>

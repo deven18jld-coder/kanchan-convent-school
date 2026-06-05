@@ -19,8 +19,8 @@ const previewEvents = eventsData.slice(0, 3).map(event => ({
     </div>
     
     <div class="grid grid-3 gap-md">
-      {previewEvents.map(event => (
-        <article class="event-card bg-white rounded shadow-sm overflow-hidden d-flex flex-column hover-lift">
+      {previewEvents.map((event, index) => (
+        <article class="event-card bg-white rounded shadow-sm overflow-hidden d-flex flex-column hover-lift" data-aos="fade-up" data-aos-delay={index * 100}>
           <div class="event-image" style="height: 200px; overflow: hidden; position: relative;">
             <img src={event.image} alt={event.title} loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" />
             <div class="event-badge bg-primary text-white text-sm" style="position: absolute; top: 1rem; right: 1rem; padding: 0.25rem 0.75rem; border-radius: 4px; font-weight: 600;">

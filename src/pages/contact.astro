@@ -26,7 +26,7 @@ const locationMap = siteData.home.locationMap;
           <div class="grid grid-2 gap-xl">
             
             {/* Left Column: Contact Information Cards */}
-            <div class="d-flex flex-column gap-lg">
+            <div class="d-flex flex-column gap-lg" data-aos="fade-left">
               
               {/* Phone, Email, Hours Card */}
               <div class="card bg-surface shadow-md p-xl" style="border-top: 4px solid var(--color-primary);">
@@ -91,7 +91,7 @@ const locationMap = siteData.home.locationMap;
             </div>
 
             {/* Right Column: Contact Inquiry Form */}
-            <div>
+            <div data-aos="fade-right">
               <div class="card bg-surface shadow-xl p-xl" style="border-top: 4px solid var(--color-primary);">
                 <h2 class="mb-xs">Send a Message</h2>
                 <p class="text-secondary fs-sm mb-lg">Have a general question or feedback? Drop us a line below.</p>
@@ -154,7 +154,7 @@ const locationMap = siteData.home.locationMap;
 
       {/* Google Maps Location Section */}
       {locationMap.enabled && (
-        <section class="section p-0 bg-bg" style="border-top: 1px solid var(--color-border); line-height: 0;">
+        <section class="section p-0 bg-bg" style="border-top: 1px solid var(--color-border); line-height: 0;" data-aos="fade-right">
           <div class="w-100" style="height: 450px; position: relative;">
             <iframe 
               src={locationMap.mapEmbed} 
