@@ -25,6 +25,24 @@ export function getHeroImage(fallbackUrl: string): string {
   return fallbackUrl;
 }
 
+export function getHeroImages(fallbackUrl: string): string[] {
+  try {
+    const folderPath = path.join(process.cwd(), 'public/images/hero');
+    const files = getSafeDir(folderPath);
+    const images = files
+      .filter(file => /\.(webp|jpg|jpeg|png)$/i.test(file))
+      .sort()
+      .map(file => `/images/hero/${file}`);
+    
+    if (images.length > 0) {
+      return images;
+    }
+  } catch (e) {
+    // fallback
+  }
+  return [fallbackUrl];
+}
+
 export function getPrincipalImage(fallbackUrl: string): string {
   try {
     const principalPath = path.join(process.cwd(), 'public/images/principal/principal.webp');

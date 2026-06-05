@@ -1,33 +1,120 @@
 ---
 import Button from '../ui/Button.astro';
 import siteData from '../../data/site.json';
-import { getHeroImage } from '../../utils/imageLoader';
+import { getHeroImages } from '../../utils/imageLoader';
 
 const { hero } = siteData.home;
-const heroBgImage = getHeroImage(hero.bgImage);
+const heroImages = getHeroImages(hero.bgImage);
 ---
 
-<section class="hero" style={`background-image: linear-gradient(rgba(26, 58, 107, 0.7), rgba(26, 58, 107, 0.8)), url('${heroBgImage}')`}>
-  <div class="container hero-content text-center">
-    <h1 class="hero-title" data-aos="fade-up">{hero.headline}</h1>
-    <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">{hero.subheadline}</p>
-    <div class="hero-ctas d-flex justify-content-center gap-md" data-aos="fade-up" data-aos-delay="200">
-      <Button href={hero.ctaPrimary.href} variant="primary">{hero.ctaPrimary.label}</Button>
-      <Button href={hero.ctaSecondary.href} variant="secondary" className="btn-outline-white">{hero.ctaSecondary.label}</Button>
+<section class="hero-slider-section" id="hero-slider" aria-label="Hero Image Slider" data-images={heroImages.length}>
+  <div class="slides-container" id="slides-container">
+    {heroImages.map((img, index) => (
+      <div 
+        class={`slide ${index === 0 ? 'active' : ''}`} 
+        data-index={index}
+      >
+        <img 
+          src={img} 
+          alt={`Hero image ${index + 1}`} 
+          class="slide-bg-img"
+          loading={index === 0 ? "eager" : "lazy"}
+          decoding={index === 0 ? "sync" : "async"}
+          fetchpriority={index === 0 ? "high" : "auto"}
+        />
+        <div class="slide-overlay"></div>
+      </div>
+    ))}
+    <div class="hero-content text-center container z-content">
+      <h1 class="hero-title" data-aos="fade-up">{hero.headline}</h1>
+      <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">{hero.subheadline}</p>
+      <div class="hero-ctas d-flex justify-content-center gap-md" data-aos="fade-up" data-aos-delay="200">
+        <Button href={hero.ctaPrimary.href} variant="primary">{hero.ctaPrimary.label}</Button>
+        <Button href={hero.ctaSecondary.href} variant="secondary" className="btn-outline-white">{hero.ctaSecondary.label}</Button>
+      </div>
     </div>
   </div>
+
+  {heroImages.length > 1 && (
+    <>
+      <button class="slider-arrow left-arrow" id="prev-slide" aria-label="Previous slide">&#10094;</button>
+      <button class="slider-arrow right-arrow" id="next-slide" aria-label="Next slide">&#10095;</button>
+
+      <div class="slider-dots" id="slider-dots">
+        {heroImages.map((_, index) => (
+          <button class={`dot ${index === 0 ? 'active' : ''}`} data-index={index} aria-label={`Go to slide ${index + 1}`}></button>
+        ))}
+      </div>
+    </>
+  )}
 </section>
 
 <style>
-  .hero {
+  .hero-slider-section {
+    position: relative;
+    width: 100%;
     min-height: 90vh;
+    overflow: hidden;
+    background-color: var(--color-surface); /* Fallback, helps prevent CLS flash */
     display: flex;
     align-items: center;
-    background-size: cover;
-    background-position: center;
-    color: var(--color-surface);
   }
-  
+
+  .slides-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .slide.active {
+    opacity: 1;
+    z-index: 2;
+  }
+
+  .slide-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    position: absolute;
+    inset: 0;
+  }
+
+  .slide-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(26, 58, 107, 0.7), rgba(26, 58, 107, 0.8));
+    z-index: 1;
+  }
+
+  .z-content {
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   .hero-title {
     color: var(--color-surface);
     font-size: clamp(2.5rem, 5vw, 4rem);
@@ -38,9 +125,6 @@ const heroBgImage = getHeroImage(hero.bgImage);
     color: #e2e8f0;
     font-size: 1.25rem;
     margin-bottom: var(--spacing-xl);
-  }
-
-  .hero-ctas {
   }
 
   /* Custom override for secondary button on dark background */
@@ -54,16 +138,201 @@ const heroBgImage = getHeroImage(hero.bgImage);
     color: var(--color-primary) !important;
   }
 
+  /* Arrows */
+  .slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    z-index: 20;
+    transition: background 0.3s ease;
+    border-radius: 4px;
+    pointer-events: auto;
+  }
+
+  .slider-arrow:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  .left-arrow {
+    left: 1rem;
+  }
+
+  .right-arrow {
+    right: 1rem;
+  }
+
+  /* Dots */
+  .slider-dots {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+    z-index: 20;
+    pointer-events: auto;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+
+  .dot.active {
+    background: white;
+    transform: scale(1.2);
+  }
 
   @media (max-width: 768px) {
-    .hero {
+    .hero-slider-section {
       min-height: 70vh;
     }
     .hero-ctas {
       flex-direction: column;
+      width: 100%;
     }
     :global(.hero-ctas .btn) {
       width: 100%;
     }
+    .slider-arrow {
+      padding: 0.5rem 1rem;
+      font-size: 1.5rem;
+    }
   }
 </style>
+
+<script>
+  function initHeroSlider() {
+    const slider = document.getElementById('hero-slider');
+    if (!slider) return;
+
+    // Check if we have multiple images based on data attribute
+    const totalSlides = parseInt(slider.getAttribute('data-images') || '0', 10);
+    
+    if (totalSlides <= 1) {
+      return;
+    }
+    const slides = slider.querySelectorAll('.slide');
+    const dots = slider.querySelectorAll('.dot');
+    const prevBtn = slider.querySelector('#prev-slide');
+    const nextBtn = slider.querySelector('#next-slide');
+
+    let currentIndex = 0;
+    let autoPlayInterval: number | undefined;
+    let isHovering = false;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    function goToSlide(index: number) {
+      if (index < 0) {
+        currentIndex = totalSlides - 1;
+      } else if (index >= totalSlides) {
+        currentIndex = 0;
+      } else {
+        currentIndex = index;
+      }
+
+      slides.forEach(slide => slide.classList.remove('active'));
+      dots.forEach(dot => dot.classList.remove('active'));
+
+      slides[currentIndex]?.classList.add('active');
+      dots[currentIndex]?.classList.add('active');
+    }
+
+    function nextSlide() {
+      goToSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+      goToSlide(currentIndex - 1);
+    }
+
+    function startAutoPlay() {
+      if (autoPlayInterval) clearInterval(autoPlayInterval);
+      autoPlayInterval = window.setInterval(() => {
+        if (!isHovering) {
+          nextSlide();
+        }
+      }, 4000);
+    }
+
+    function stopAutoPlay() {
+      if (autoPlayInterval) {
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = undefined;
+      }
+    }
+
+    function resetAutoPlay() {
+      stopAutoPlay();
+      startAutoPlay();
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetAutoPlay(); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetAutoPlay(); });
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        goToSlide(index);
+        resetAutoPlay();
+      });
+    });
+
+    // Pause on hover (desktop)
+    slider.addEventListener('mouseenter', () => {
+      isHovering = true;
+    });
+
+    slider.addEventListener('mouseleave', () => {
+      isHovering = false;
+      resetAutoPlay(); // ensures immediate resume behavior if desired, or simply let the interval pick it up
+    });
+
+    // Swipe Support
+    slider.addEventListener('touchstart', (e: Event) => {
+      const touchEvent = e as TouchEvent;
+      touchStartX = touchEvent.changedTouches[0].screenX;
+    }, { passive: true });
+
+    slider.addEventListener('touchend', (e: Event) => {
+      const touchEvent = e as TouchEvent;
+      touchEndX = touchEvent.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      if (touchEndX < touchStartX - swipeThreshold) {
+        nextSlide();
+        resetAutoPlay();
+      } else if (touchEndX > touchStartX + swipeThreshold) {
+        prevSlide();
+        resetAutoPlay();
+      }
+    }
+
+    // Start auto-play initially
+    startAutoPlay();
+    
+    // Astro view transition cleanup
+    document.addEventListener('astro:before-swap', stopAutoPlay, { once: true });
+  }
+
+  // Run on initial load
+  initHeroSlider();
+  
+  // Re-run after Astro view transitions
+  document.addEventListener('astro:after-swap', initHeroSlider);
+</script>
